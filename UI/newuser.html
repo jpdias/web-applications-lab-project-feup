@@ -27,7 +27,7 @@
   </head>
 
   <body>
-  
+	
 	<div class="navbar navbar-default navbar-fixed-top" role="navigation">
       <div class="container">
         <div class="navbar-header">
@@ -37,26 +37,42 @@
         </div><!--/.nav-collapse -->
       </div>
     </div>
-
-    <div class="container">
+	 <body>
+  
+	<div class="container">
       <form class="form-signin" role="form">
-        <h2 class="form-signin-heading">Please sign in</h2>
-        <input type="email" class="form-control" placeholder="Email address" required autofocus>
+        <h2 class="form-signin-heading">New registation</h2>
+		<br>
+		<div class="row">
+		  <div class="col-lg-6">
+			<div class="input-group">
+				<input type="text" class="form-control" placeholder="First Name" required autofocus>
+			</div><!-- /input-group -->
+		  </div><!-- /.col-lg-6 -->
+		  <div class="col-lg-6">
+			<div class="input-group">
+				<input type="text" class="form-control" placeholder="Last Name" required>
+			</div><!-- /input-group -->
+		  </div><!-- /.col-lg-6 -->
+		</div><!-- /.row -->
+		</br>
+		<input type="text" class="form-control" placeholder="Address" required>
+		<br>
+		<input type="email" class="form-control" placeholder="Email address" required>
+		<br>
         <input type="password" class="form-control" placeholder="Password" required>
-        <label class="checkbox">
-          <input type="checkbox" value="remember-me"> Remember me
+		
+		<input type="password" class="form-control" placeholder="Reenter password" required>
+		 <label class="checkbox">
+          <input type="checkbox" value="terms"> I agree with the terms and conditions.
         </label>
-        <button class="btn btn-lg btn-success btn-block" type="submit">Sign in</button>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
       </form>
     </div> <!-- /container -->
-	
-	
-	<div class="container">
-      <footer>
-        <p>&copy; Gestorax - Inventory Management</p>
-      </footer>
-    </div> <!-- /container -->
-
-
-   </body>
+  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+  <script src="js/jquery.js"></script>
+ 
+  <!-- Include all compiled plugins (below), or include individual files as needed -->
+  <script src="js/bootstrap.min.js"></script>
+  </body>
 </html>
