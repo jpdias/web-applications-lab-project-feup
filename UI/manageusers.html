@@ -47,13 +47,11 @@
         <div class="col-sm-3 col-md-2 sidebar">
           <ul class="nav nav-sidebar">
             <li class="active"><a href="#">Overview</a></li>
-			<li><a href="#">Inventory Management</a></li>
             <li><a href="#">Reports</a></li>
-            <li><a href="#">Add Object</a></li>
-            <li><a href="#">Manage</a></li>
-			<li><a href="#">User Management</a></li>
+            <li><a href="#">Analytics</a></li>
+            <li><a href="#">Export</a></li>
+			<li><a href="#">User management</a></li>
             <li><a href="#">My profile</a></li>
-			
           </ul>
           <form class="body-form" role="search">
           <div class="input-group add-on">
@@ -64,19 +62,40 @@
           </div>
           </form>
         </div>
-
-        <div class="col-md-10 main">
-          <h1 class="page-header">Dashboard</h1>
-          <h2 class="sub-header">Last requesitions</h2>
+		<div class="col-md-10">
+			<h1><i class="glyphicon glyphicon-search"></i>  Search Users</h1>
+		</div>
+		<div class="col-lg-8">
+		  <form>
+			<div class="input-group">
+				<div class="input-group-btn"> 
+				<a class="btn btn-default dropdown-toggle btn-select" data-toggle="dropdown" href="#">Everything <span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="#">Age</a></li>
+						<li><a href="#">Country</a></li>
+						<li><a href="#">Name</a></li>
+					</ul>
+				</div>
+				<input type="text" class="form-control" placeholder="Search" name="srch-term" id="srch-term">
+				<div class="input-group-btn">
+				<button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+				</div>
+			</div>
+		</form>
+		<!-- Search box End -->
+		</div>
+		
+		<div class="col-md-2"></div>
+        <div class="col-md-4">
+          <h2 class="sub-header">Active users</h2>
           <div class="table-responsive">
             <table class="table table-striped">
               <thead>
                 <tr>
                   <th>#</th>
                   <th>Name</th>
-                  <th>Request date</th>
-                  <th>Expire date</th>
-                  <th>Status</th>
+                  <th>Last Login</th>                
+                  <th>Obs</th>
                 </tr>
               </thead>
               <tbody>
@@ -84,14 +103,40 @@
                   <td>1,001</td>
                   <td>Lorem</td>
                   <td>ipsum</td>
-                  <td>dolor</td>
                   <td>Expire date close</td>
                 </tr>
                 <tr>
                   <td>1,002</td>
                   <td>amet</td>
                   <td>consectetur</td>
-                  <td>adipiscing</td>
+                  <td>Valid</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+		<div class="col-md-4">
+        
+
+          <h2 class="sub-header">New Users</h2>
+          <div class="table-responsive">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Name</th>
+                  <th>Email</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>1,001</td>
+                  <td>Lorem</td>
+                  <td>Expire date close</td>
+                </tr>
+                <tr>
+                  <td>1,002</td>
+                  <td>amet</td>
                   <td>Valid</td>
                 </tr>
               </tbody>
@@ -104,7 +149,13 @@
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="js/jquery.js"></script>
+	<script src="js/jquery.js"></script>
+	<script>
+	$(".dropdown-menu li a").click(function(){
+	  var selText = $(this).text();
+	  $(this).parents('.btn-group').find('.dropdown-toggle').html(selText+' <span class="caret"></span>');
+	});
+	</script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/docs.min.js"></script>
   </body>
