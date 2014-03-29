@@ -1,141 +1,141 @@
-DROP TABLE IF EXISTS ALERT;
-DROP TABLE IF EXISTS INVENTORY;
-DROP TABLE IF EXISTS REPAIR;
-DROP TABLE IF EXISTS ITEMTAG;
-DROP TABLE IF EXISTS TAG;
-DROP TABLE IF EXISTS WAITINGLIST;
-DROP TABLE IF EXISTS ITEM;
-DROP TABLE IF EXISTS RESERVE;
-DROP TABLE IF EXISTS REQUISITION;
-DROP TABLE IF EXISTS MANAGER;
-DROP TABLE IF EXISTS READER;
-DROP TABLE IF EXISTS ADMIN;
-DROP TABLE IF EXISTS REPAIRCOMPANY;
-DROP TABLE IF EXISTS CITY;
+DROP TABLE IF EXISTS alert;
+DROP TABLE IF EXISTS inventory;
+DROP TABLE IF EXISTS repair;
+DROP TABLE IF EXISTS itemtag;
+DROP TABLE IF EXISTS tag;
+DROP TABLE IF EXISTS waitinglist;
+DROP TABLE IF EXISTS item;
+DROP TABLE IF EXISTS reserve;
+DROP TABLE IF EXISTS requisition;
+DROP TABLE IF EXISTS manager;
+DROP TABLE IF EXISTS reader;
+DROP TABLE IF EXISTS admin;
+DROP TABLE IF EXISTS repaircompany;
+DROP TABLE IF EXISTS city;
 
-CREATE TABLE CITY
+CREATE TABLE city
 (
-IDCITY INTEGER NOT NULL PRIMARY KEY,
-NAME TEXT NOT NULL
+idcity integer not null primary key,
+name text not null
 );
 
-CREATE TABLE REPAIRCOMPANY
+CREATE TABLE repaircompany
 (
-IDREPAIRCOMPANY INTEGER NOT NULL PRIMARY KEY,
-COMPANYNAME TEXT NOT NULL,
-IDCITY REFERENCES CITY(IDCITY) NOT NULL
+idrepaircompany integer not null primary key,
+companyname text not null,
+idcity references city(idcity) not null
 );
 
-CREATE TABLE ADMIN
+CREATE TABLE admin
 (
-IDADMIN INTEGER NOT NULL PRIMARY KEY,
-PASSWORD UNIQUE NOT NULL,
-USERNAME UNIQUE NOT NULL,
+idadmin integer not null primary key,
+username unique not null,
+password unique not null,
 );
 
-CREATE TYPE READERSTATUS AS ENUM ('BLOCKED', 'ACTIVE', 'CLOSED');
+CREATE TYPE readerstatus AS enum ('blocked', 'active', 'closed');
 
-CREATE TABLE READER
+CREATE TABLE reader
 (
-IDREADER INTEGER NOT NULL PRIMARY KEY,
-PASSWORD UNIQUE NOT NULL,
-USERNAME UNIQUE NOT NULL,
-ADDRESS TEXT,
-BIRTHDATE DATE,
-EMAIL UNIQUE NOT NULL,
-FIRSTNAME TEXT NOT NULL,
-LASTNAME TEXT,
-CURRENTSTATUS READERSTATUS NOT NULL
+idreader integer not null primary key,
+username unique not null,
+password unique not null,
+address text,
+birthdate date,
+email unique not null,
+firstname text not null,
+lastname text,
+currentstatus readerstatus not null
 );
 
-CREATE TABLE MANAGER
+CREATE TABLE manager
 (
-IDMANAGER INTEGER NOT NULL PRIMARY KEY,
-IDINVENTORY REFERENCES INVENTORY(IDINVENTORY) NOT NULL
+idmanager integer not null primary key,
+idinventory references inventory(idinventory) not null
 );
 
-CREATE TYPE REQUISITIONSTATUS AS ENUM ('CLOSED', 'OPEN');
+CREATE TYPE requisitionstatus AS enum ('closed', 'open');
 
-CREATE TABLE REQUISITION
+CREATE TABLE requisition
 (
-IDREQUISTION INTEGER NOT NULL PRIMARY KEY,
-COMMENT TEXT NOT NULL,
-DELIVERYDATE DATE NOT NULL CHECK(DELIVERYDATE <= FINALDATE),
-FINALDATE DATE NOT NULL,
-INITIALDATE DATE NOT NULL CHECK(INITIALDATE <= FINALDATE),
-NUMBEROFRENEWALS INTEGER NOT NULL CHECK(NUMBEROFRENEWALS >= 0),
-CURRENTSTATUS REQUISITIONSTATUS NOT NULL
-IDREADER REFERENCES READER(IDREADER) NOT NULL,
-IDITEM REFERENCES ITEM(IDITEM) NOT NULL
+idrequistion integer not null primary key,
+comment text not null,
+finaldate date not null,
+deliverydate date not null check(deliverydate <= finaldate),
+initialdate date not null check(initialdate <= finaldate),
+numberofrenewals integer not null check(numberofrenewals >= 0),
+currentstatus requisitionstatus not null
+idreader references reader(idreader) not null,
+iditem references item(iditem) not null
 );
 
-CREATE TYPE RESERVESTATUS AS ENUM ('CLOSED', 'OPEN');
+CREATE TYPE reservestatus AS enum ('closed', 'open');
 
-CREATE TABLE RESERVE
+CREATE TABLE reserve
 (
-IDRESERVE INTEGER NOT NULL PRIMARY KEY,
-EXPIREDATE DATE NOT NULL,
-RESERVEDATE DATE NOT NULL CHECK(RESERVEDATE <= EXPIREDATE),
-CURRENTSTATUS RESERVESTATUS NOT NULL,
-IDREADER REFERENCES READER(IDREADER) NOT NULL,
-IDITEM REFERENCES ITEM(IDITEM) NOT NULL
+idreserve integer not null primary key,
+expiredate date not null,
+reservedate date not null check(reservedate <= expiredate),
+currentstatus reservestatus not null,
+idreader references reader(idreader) not null,
+iditem references item(iditem) not null
 );
 
-CREATE TYPE ITEMSTATUS AS ENUM ('AVAILABLE', 'REPAIR', 'WITHDRAWN', 'UNAVAILABLE');
+CREATE TYPE itemstatus AS enum ('available', 'repair', 'withdrawn', 'unavailable');
 
-CREATE TABLE ITEM
+CREATE TABLE item
 (
-IDITEM INTEGER NOT NULL PRIMARY KEY,
-DESCRIPTION TEXT NOT NULL,
-IMAGE TEXT,
-NAME TEXT NOT NULL,
-QRCODE TEXT,
-CURRENTSTATUS ITEMSTATUS NOT NULL,
-IDINVENTORY REFERENCES INVENTORY(IDINVENTORY) NOT NULL
+iditem integer not null primary key,
+name text not null,
+image text,
+description text not null,
+qrcode text,
+currentstatus itemstatus not null,
+idinventory references inventory(idinventory) not null
 );
 
-CREATE TABLE WAINTINGLIST
+CREATE TABLE waitinglist
 (
-IDREADER REFERENCES READER(IDREADER) NOT NULL PRIMARY KEY,
-IDITEM REFERENCES ITEM(IDITEM) NOT NULL PRIMARY KEY
+idreader references reader(idreader) not null primary key,
+iditem references item(iditem) not null primary key
 );
 
-CREATE TABLE TAG
+CREATE TABLE tag
 (
-IDTAG INTEGER NOT NULL PRIMARY KEY,
-NAME TEXT NOT NULL
+idtag integer not null primary key,
+name text not null
 );
 
-CREATE TABLE ITEMTAG
+CREATE TABLE itemtag
 (
-IDITEM REFERENCES ITEM(IDITEM) NOT NULL PRIMARY KEY,
-IDTAG REFERENCES TAG(IDTAG) NOT NULL PRIMARY KEY
+iditem references item(iditem) not null primary key,
+idtag references tag(idtag) not null primary key
 );
 
-CREATE TABLE REPAIR
+CREATE TABLE repair
 (
-IDREPAIR INTEGER NOT NULL PRIMARY KEY,
-FINALDATE DATE NOT NULL,
-INITIALDATE DATE NOT NULL CHECK(INITIALDATE <= FINALDATE),
-REASON TEXT NOT NULL,
-IDREPAIRCOMPANY REFERENCES REPAIRCOMPANY(IDREPAIRCOMPANY) NOT NULL
+idrepair integer not null primary key,
+finaldate date not null,
+initialdate date not null check(initialdate <= finaldate),
+reason text not null,
+idrepaircompany references repaircompany(idrepaircompany) not null
 );
 
-CREATE TABLE INVENTORY
+CREATE TABLE inventory
 (
-IDINVENTORY INTEGER NOT NULL PRIMARY KEY,
-NAME TEXT NOT NULL
+idinventory integer not null primary key,
+name text not null
 );
 
-CREATE TYPE ALERTCATEGORY AS ENUM ('REQUESTRECEIPT', 'EXPIRATION', 'ITEMAVAILABILITY', 'RECEPTIONRECEIPT');
+CREATE TYPE alertcategory AS enum ('requestreceipt', 'expiration', 'itemavailability', 'receptionreceipt');
 
-CREATE TABLE ALERT
+CREATE TABLE alert
 (
-IDALERT INTEGER NOT NULL PRIMARY KEY,
-CATERGORY ALERTCATEGORY NOT NULL
-CONTENT TEXT NOT NULL,
-CREATEDON DATE NOT NULL,
-IDITEM REFERENCES ITEM(IDITEM) NOT NULL,
-IDREADER REFERENCES READER(IDREADER) NOT NULL
-IDMANAGER REFERENCES MANAGER(IDMANAGER) NOT NULL
+idalert integer not null primary key,
+catergory alertcategory not null
+content text not null,
+createdon date not null,
+iditem references item(iditem) not null,
+idreader references reader(idreader) not null
+idmanager references manager(idmanager) not null
 );
