@@ -23,7 +23,7 @@ CREATE TABLE repaircompany
 (
 idrepaircompany integer not null primary key,
 companyname text not null,
-idcity references city(idcity) not null
+idcity REFERENCES city(idcity) not null
 );
 
 CREATE TABLE admin
@@ -51,7 +51,7 @@ currentstatus readerstatus not null
 CREATE TABLE manager
 (
 idmanager integer not null primary key,
-idinventory references inventory(idinventory) not null
+idinventory REFERENCES inventory(idinventory) not null
 );
 
 CREATE TYPE requisitionstatus AS enum ('closed', 'open');
@@ -65,8 +65,8 @@ deliverydate date not null check(deliverydate <= finaldate),
 initialdate date not null check(initialdate <= finaldate),
 numberofrenewals integer not null check(numberofrenewals >= 0),
 currentstatus requisitionstatus not null,
-idreader references reader(idreader) not null,
-iditem references item(iditem) not null1
+idreader REFERENCES reader(idreader) not null,
+iditem REFERENCES item(iditem) not null1
 );
 
 CREATE TYPE reservestatus AS enum ('closed', 'open');
@@ -77,8 +77,8 @@ idreserve integer not null primary key,
 expiredate date not null,
 reservedate date not null check(reservedate <= expiredate),
 currentstatus reservestatus not null,
-idreader references reader(idreader) not null,
-iditem references item(iditem) not null
+idreader REFERENCES reader(idreader) not null,
+iditem REFERENCES item(iditem) not null
 );
 
 CREATE TYPE itemstatus AS enum ('available', 'repair', 'withdrawn', 'unavailable');
@@ -91,13 +91,13 @@ image text,
 description text not null,
 qrcode text,
 currentstatus itemstatus not null,
-idinventory references inventory(idinventory) not null
+idinventory REFERENCES inventory(idinventory) not null
 );
 
 CREATE TABLE waitinglist
 (
-idreader references reader(idreader) not null primary key,
-iditem references item(iditem) not null primary key
+idreader REFERENCES reader(idreader) not null primary key,
+iditem REFERENCES item(iditem) not null primary key
 );
 
 CREATE TABLE tag
@@ -108,8 +108,8 @@ name text not null
 
 CREATE TABLE itemtag
 (
-iditem references item(iditem) not null primary key,
-idtag references tag(idtag) not null primary key
+iditem REFERENCES item(iditem) not null primary key,
+idtag REFERENCES tag(idtag) not null primary key
 );
 
 CREATE TABLE repair
@@ -118,8 +118,8 @@ idrepair integer not null primary key,
 finaldate date not null,
 initialdate date not null check(initialdate <= finaldate),
 reason text not null,
-idrepaircompany references repaircompany(idrepaircompany) not null,
-iditem references item(iditem) not null primary key
+idrepaircompany REFERENCES repaircompany(idrepaircompany) not null,
+iditem REFERENCES item(iditem) not null primary key
 );
 
 CREATE TABLE inventory
@@ -136,7 +136,7 @@ idalert integer not null primary key,
 catergory alertcategory not null,
 content text not null,
 createdon date not null,
-iditem references item(iditem) not null,
-idreader references reader(idreader) not null,
-idmanager references manager(idmanager) not null
+iditem REFERENCES item(iditem) not null,
+idreader REFERENCES reader(idreader) not null,
+idmanager REFERENCES manager(idmanager)
 );
