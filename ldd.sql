@@ -64,9 +64,9 @@ finaldate date not null,
 deliverydate date not null check(deliverydate <= finaldate),
 initialdate date not null check(initialdate <= finaldate),
 numberofrenewals integer not null check(numberofrenewals >= 0),
-currentstatus requisitionstatus not null
+currentstatus requisitionstatus not null,
 idreader references reader(idreader) not null,
-iditem references item(iditem) not null
+iditem references item(iditem) not null1
 );
 
 CREATE TYPE reservestatus AS enum ('closed', 'open');
@@ -118,7 +118,8 @@ idrepair integer not null primary key,
 finaldate date not null,
 initialdate date not null check(initialdate <= finaldate),
 reason text not null,
-idrepaircompany references repaircompany(idrepaircompany) not null
+idrepaircompany references repaircompany(idrepaircompany) not null,
+iditem references item(iditem) not null primary key
 );
 
 CREATE TABLE inventory
@@ -132,10 +133,10 @@ CREATE TYPE alertcategory AS enum ('requestreceipt', 'expiration', 'itemavailabi
 CREATE TABLE alert
 (
 idalert integer not null primary key,
-catergory alertcategory not null
+catergory alertcategory not null,
 content text not null,
 createdon date not null,
 iditem references item(iditem) not null,
-idreader references reader(idreader) not null
+idreader references reader(idreader) not null,
 idmanager references manager(idmanager) not null
 );
