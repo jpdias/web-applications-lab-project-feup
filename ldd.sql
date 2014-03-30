@@ -28,7 +28,7 @@ idCity REFERENCES city(idCity) not null
 
 CREATE TABLE admin
 (
-idadmin integer not null primary key,
+idAdmin integer not null primary key,
 username unique not null,
 password unique not null,
 );
@@ -133,7 +133,7 @@ CREATE TYPE alertcategory AS enum ('requestreceipt', 'expiration', 'itemavailabi
 
 CREATE TABLE alert
 (
-idalert integer not null primary key,
+idAlert integer not null primary key,
 catergory alertcategory not null,
 content text not null,
 createdon date not null,
