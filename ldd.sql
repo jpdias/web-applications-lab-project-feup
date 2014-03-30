@@ -50,9 +50,9 @@ currentstatus readerstatus not null
 
 CREATE TABLE manager
 (
-idmanager integer not null primary key,
+idManager integer not null primary key,
 idInventory REFERENCES inventory(idInventory) not null,
-idReader REFERENCES Reader(idReader) not null
+idReader REFERENCES reader(idReader) not null
 );
 
 CREATE TYPE requisitionstatus AS enum ('closed', 'open');
@@ -103,14 +103,14 @@ idItem REFERENCES item(idItem) not null primary key
 
 CREATE TABLE tag
 (
-idtag integer not null primary key,
+idTag integer not null primary key,
 name text not null
 );
 
 CREATE TABLE itemtag
 (
 idItem REFERENCES item(idItem) not null primary key,
-idtag REFERENCES tag(idtag) not null primary key
+idTag REFERENCES tag(idTag) not null primary key
 );
 
 CREATE TABLE repair
@@ -139,5 +139,5 @@ content text not null,
 createdon date not null,
 idItem REFERENCES item(idItem) not null,
 idReader REFERENCES reader(idReader) not null,
-idmanager REFERENCES manager(idmanager)
+idManager REFERENCES manager(idManager)
 );
