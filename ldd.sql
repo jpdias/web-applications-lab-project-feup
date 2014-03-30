@@ -15,7 +15,7 @@ DROP TABLE IF EXISTS city;
 
 CREATE TABLE city
 (
-idcity integer not null primary key,
+idCity integer not null primary key,
 name text not null
 );
 
@@ -23,7 +23,7 @@ CREATE TABLE repaircompany
 (
 idRepaircompany integer not null primary key,
 companyname text not null,
-idcity REFERENCES city(idcity) not null
+idCity REFERENCES city(idCity) not null
 );
 
 CREATE TABLE admin
