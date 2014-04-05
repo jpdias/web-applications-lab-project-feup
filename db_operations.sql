@@ -19,7 +19,6 @@ FROM requisition,item,reader
 WHERE requisition.iditem = item.iditem AND requisition.idreader = reader.idreader;
 
 --user list
-
 SELECT username,firstname,lastname,address
 FROM reader,manager
 WHERE reader.idreader!=manager.idmanager;
@@ -50,7 +49,7 @@ SELECT name FROM
 (SELECT * FROM tag JOIN itemtag ON idtag) ORDER BY nitems DESC limit 100);
 
 --get user data
-SELECT name FROM reader WHERE name LIKE :query; -- quando temos query.
+SELECT name FROM reader WHERE name LIKE :query; 
 
 --get item data for tag
 SELECT name,image,description,qrcode,currentstatus
@@ -58,4 +57,19 @@ FROM item it
 INNER JOIN itemtag it1 ON it.iditem = it1.iditem
 INNER JOIN tag t ON it1.idtag=t.idtag
 WHERE tag.name LIKE tag:query;
+
+--get item data
+SELECT name,image,description, qrcode, currentstatus 
+FROM item
+WHERE item.idItem = :idquery;
+
+--get requesition data
+SELECT name,firstname,lastname,finaldate
+FROM requisition,item,reader 
+WHERE requisition.iditem = item.iditem AND requisition.idreader = reader.idreader AND requisition.idRequesition = :idquery;
+
+--get reservation data
+SELECT name,firstname,lastname,finaldate
+FROM reserve,item,reader 
+WHERE reserve.iditem = item.iditem AND reserve.idreader = reader.idreader AND reserve.idReserve = :idquery;
 
