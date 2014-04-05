@@ -38,9 +38,13 @@ BEGIN
 		WHERE item.iditem = n_rep.iditem;
 END;
 
-
-
-
-
+CREATE TRIGGER emailconfirmation
+AFTER INSERT ON reader
+REFERENCING 
+	NEW AS n_reader
+BEGIN
+	INSERT ON alert (category,content,createdon,idReader)
+	VALUES('confirmationemail','Account Confirmation', CURRENT_DATE,n_reader.idReader);
+END;
 
 

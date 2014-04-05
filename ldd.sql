@@ -129,7 +129,7 @@ idInventory integer not null primary key,
 name text not null
 );
 
-CREATE TYPE alertcategory AS enum ('requestreceipt', 'expiration', 'itemavailability', 'receptionreceipt');
+CREATE TYPE alertcategory AS enum ('requestreceipt', 'expiration', 'itemavailability', 'receptionreceipt','confirmationemail');
 
 CREATE TABLE alert
 (
@@ -137,7 +137,7 @@ idAlert integer not null primary key,
 catergory alertcategory not null,
 content text not null,
 createdon date not null,
-idItem REFERENCES item(idItem) not null,
+idItem REFERENCES item(idItem),
 idReader REFERENCES reader(idReader) not null,
 idManager REFERENCES manager(idManager)
 );
