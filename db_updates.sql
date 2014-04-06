@@ -71,4 +71,6 @@ SET currentstatus = :newstatus
 WHERE idReserve = :idres;
 
 
+--Deletes
 
+DELETE FROM alert WHERE alert.idAlert = :idQuery;
