@@ -39,7 +39,7 @@ WHERE reader.idreader=manager.idmanager;
 SELECT alertcategory,item,reader
 FROM alert,item,reader,requesition
 WHERE alert.idreader = reader.idreader 
-AND iditem = item.iditem 
+AND alert.iditem = item.iditem 
 AND requesition.iditem = alert.iditem
 AND (CURRENT_DATE-requesition.finaldate)<=3;
 
