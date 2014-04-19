@@ -1,4 +1,14 @@
-<!DOCTYPE html>
+<?php
+try
+{
+	include_once('../config/init.php');
+}
+catch (Exception $e)
+{
+	echo $e->getMessage();
+}
+?>
+
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -11,10 +21,10 @@
     <title>Gestorax - Inventory Management</title>
 
      <!-- Bootstrap core CSS -->
-    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="../css/bootstrap.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="../css/bootstrap-responsive.css" rel="stylesheet">
 
     <!-- Just for debugging purposes. Don't actually copy this line! -->
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
@@ -62,16 +72,72 @@
 				<br><br><br><h1>&nbsp;&nbsp;&nbsp;<i class="glyphicon glyphicon-search"></i>  Search Results</h1>
 				
 				<br><div class="span9" id="results-main">
-					<h4><small>1 Results for Project in 2 ms</small></h4>
-					
-					<!-- part results -->
+					<?php
+					try
+					{
+						$tags = $_GET['tags'];
+
+						$itemnumber = $_GET['itemnumber'];
+						
+						
+						$whereStmt = "";
+
+
+						if (isset($_GET['tags']))
+						{
+							$tag = strtok($_GET['tags'], ",");
+							
+							while ($tag != false)
+							{
+								if($whereStmt == "")
+								{
+									$whereStmt = $whereStmt . ' where (name like \'%' . $tag . '%\'';
+								}
+								else
+								{
+									$whereStmt = $whereStmt . ' or name like \'%' . $tag . '%\'';
+								}
+								
+								$tag = strtok(",");
+							}
+							
+							if($whereStmt != "")
+							{
+								$whereStmt = $whereStmt . ')';
+							}
+							
+							
+							$starttime = microtime(true);
+							
+							
+							$stmt = $conn->prepare('
+							select name, image, description, qrcode, currentstatus
+							from item' . $whereStmt);
+							$stmt->execute();
+							$stmt->setFetchMode(PDO::FETCH_ASSOC);
+							$result = $stmt->fetchAll();
+							
+							
+							$endtime = microtime(true);
+							
+							
+							$timeelapsed = $endtime - $starttime;
+							
+							
+							echo '<h4><small>' . count($result) . ' Result(s) for ' . $_GET['tags'] . ' in ' . number_format((float) $timeelapsed, 2, '.', '') . ' ms</small></h4>';
+
+
+							for($i = 0; $i < count($result); ++$i)
+							{
+							?>
+								<!-- part results -->
 					<div id="results" class="results-on">
 						
 						<section class="result-part">
 							<img id="result-thumb" class="pull-left" src="../resources/projector.jpg">
-							<h3><a href="#" class="view-detail">Benq Projector </a>
+							<h3><a href="#" class="view-detail"> <?php echo $result[$i]['name']; ?> </a>
 							</h3>
-							<p class="short-desc pull-left">BenQ MP512-ST Short-Throw Projector</p>
+							<p class="short-desc pull-left"> <?php echo $result[$i]['description']; ?> </p>
 							<div class="price-avail pull-right">
 								<!-- star rating inputs -->
 								<input name="rating1" type="radio" class="star">
@@ -83,7 +149,16 @@
 								<p class="avail">Availability: Available</p>
 								<button class="btn btn-success">Request <i class="glyphicon glyphicon-tag"></i></button>
 							</div>
-						</section>
+							</section>
+							<?php
+							}
+						}
+					}
+					catch (Exception $e)
+					{
+						echo $e->getMessage();
+					}
+					?>
 		          	<br>
 				</div>
 			</div>
@@ -97,7 +172,7 @@
   
   <!-- Include all compiled plugins (below), or include individual files as needed -->
   <script src="../javascript/bootstrap.js"></script>
-  <script src="js/plugins.js"></script>
+  <script src="../javascript/plugins.js"></script>
   </body>
   
   </body>
