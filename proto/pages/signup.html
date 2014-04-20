@@ -54,16 +54,20 @@
                </div>
                <!-- /.row -->
                </br>
+			   <input name="username" type="text" class="form-control" placeholder="Username" required>
+               <br>
                <input name="city" type="text" class="form-control" placeholder="City" required>
+               <br>
+			   <input name="birthdate" type="date" class="form-control" placeholder="Birthdate" required>
                <br>
                <input name="email" type="email" class="form-control" placeholder="Email address" required>
                <br>
                <input name="password" type="password" class="form-control" placeholder="Password" required>
                <input name="confirmpassword" type="password" class="form-control" placeholder="Reenter password" required>
                <label class="checkbox">
-               <input type="checkbox" value="terms"> I agree with the terms and conditions.
+               <input name="termsandconditions" type="checkbox" value="agree"> I agree with the terms and conditions.
                </label>
-               <button class="btn btn-lg btn-primary btn-block" type="submit" >Sign up</button>
+               <button class="btn btn-lg btn-primary btn-block" type="submit" onclick="if(!this.form.termsandconditions.checked){alert('You must agree with the terms and conditions.');return false}">Sign up</button>
             </form>
          </div>
          <!-- /container -->
