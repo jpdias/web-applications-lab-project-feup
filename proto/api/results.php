@@ -75,15 +75,10 @@ catch (Exception $e)
 					<?php
 					try
 					{
-						$tags = $_GET['tags'];
-
-						$itemnumber = $_GET['itemnumber'];
-						
-						
 						$whereStmt = "";
 
 
-						if (isset($_GET['tags']))
+						if (isset($_GET['tags']) && $_GET['tags'] != '')
 						{
 							$tag = strtok($_GET['tags'], ",");
 							
@@ -100,6 +95,13 @@ catch (Exception $e)
 								
 								$tag = strtok(",");
 							}
+							
+							
+							if(isset($_GET['onlyavailableitems']) && $_GET['onlyavailableitems'] == "yes")
+							{
+								$whereStmt = $whereStmt . ' and currentstatus = ' . '\'available\'';
+							}
+							
 							
 							if($whereStmt != "")
 							{
@@ -124,7 +126,7 @@ catch (Exception $e)
 							$timeelapsed = $endtime - $starttime;
 							
 							
-							echo '<h4><small>' . count($result) . ' Result(s) for ' . $_GET['tags'] . ' in ' . number_format((float) $timeelapsed, 2, '.', '') . ' ms</small></h4>';
+							echo '<h4><small>' . count($result) . ' Result(s) for tags ' . $_GET['tags'] . ' in ' . number_format((float) $timeelapsed, 2, '.', '') . ' ms</small></h4>';
 
 
 							for($i = 0; $i < count($result); ++$i)
@@ -134,7 +136,7 @@ catch (Exception $e)
 					<div id="results" class="results-on">
 						
 						<section class="result-part">
-							<img id="result-thumb" class="pull-left" src="../resources/projector.jpg">
+							<img id="result-thumb" class="pull-left" src=" <?php echo $result[$i]['image']; ?> ">
 							<h3><a href="#" class="view-detail"> <?php echo $result[$i]['name']; ?> </a>
 							</h3>
 							<p class="short-desc pull-left"> <?php echo $result[$i]['description']; ?> </p>
@@ -146,12 +148,78 @@ catch (Exception $e)
 								<input name="rating1" type="radio" class="star">
 								<input name="rating1" type="radio" class="star" checked="checked">
 								<!-- price and availability -->
-								<p class="avail">Availability: Available</p>
+								<p class="avail">Availability: <?php echo $result[$i]['currentstatus']; ?> </p>
 								<button class="btn btn-success">Request <i class="glyphicon glyphicon-tag"></i></button>
 							</div>
 							</section>
 							<?php
 							}
+						}
+						else
+						{
+							if (isset($_GET['itemnumber']) && $_GET['itemnumber'] != '')
+						{
+							$whereStmt = ' where (idItem = ' . $_GET['itemnumber'];
+							
+							
+							if(isset($_GET['onlyavailableitems']) && $_GET['onlyavailableitems'] == "yes")
+							{
+								$whereStmt = $whereStmt . ' and currentstatus = ' . '\'available\'';
+							}
+							
+							
+							if($whereStmt != "")
+							{
+								$whereStmt = $whereStmt . ')';
+							}
+							
+							
+							$starttime = microtime(true);
+							
+							
+							$stmt = $conn->prepare('
+							select name, image, description, qrcode, currentstatus
+							from item' . $whereStmt);
+							$stmt->execute();
+							$stmt->setFetchMode(PDO::FETCH_ASSOC);
+							$result = $stmt->fetchAll();
+							
+							
+							$endtime = microtime(true);
+							
+							
+							$timeelapsed = $endtime - $starttime;
+							
+							
+							echo '<h4><small>' . count($result) . ' Result(s) for item number ' . $_GET['itemnumber'] . ' in ' . number_format((float) $timeelapsed, 2, '.', '') . ' ms</small></h4>';
+
+
+							for($i = 0; $i < count($result); ++$i)
+							{
+							?>
+								<!-- part results -->
+					<div id="results" class="results-on">
+						
+						<section class="result-part">
+							<img id="result-thumb" class="pull-left" src=" <?php echo $result[$i]['image']; ?> ">
+							<h3><a href="#" class="view-detail"> <?php echo $result[$i]['name']; ?> </a>
+							</h3>
+							<p class="short-desc pull-left"> <?php echo $result[$i]['description']; ?> </p>
+							<div class="price-avail pull-right">
+								<!-- star rating inputs -->
+								<input name="rating1" type="radio" class="star">
+								<input name="rating1" type="radio" class="star">
+								<input name="rating1" type="radio" class="star">
+								<input name="rating1" type="radio" class="star">
+								<input name="rating1" type="radio" class="star" checked="checked">
+								<!-- price and availability -->
+								<p class="avail">Availability: <?php echo $result[$i]['currentstatus']; ?> </p>
+								<button class="btn btn-success">Request <i class="glyphicon glyphicon-tag"></i></button>
+							</div>
+							</section>
+							<?php
+							}
+						}
 						}
 					}
 					catch (Exception $e)
