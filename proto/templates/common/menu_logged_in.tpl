@@ -23,7 +23,7 @@
           </a>
         </div>
         <div class="navbar-collapse collapse">
-          <form class="navbar-form navbar-right" role="form" method="post" action="../pages/signin.php">
+          <form class="navbar-form navbar-right" role="form" method="post" action="../actions/logout.php">
             <div class="form-group">
               <input name="email" type="text" placeholder="Email" class="form-control">
             </div>
