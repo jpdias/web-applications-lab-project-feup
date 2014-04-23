@@ -1,36 +1,48 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <title>Fritter</title>
-    <meta charset='utf-8'>
-    <link rel="stylesheet" href="{$BASE_URL}css/style.css">
-    <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
-    <script src="{$BASE_URL}javascript/main.js"></script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="../resources/logo.ico">
+    <title>
+      Gestorax - Inventory Management
+    </title>
+    <!-- Bootstrap core CSS -->
+    <link href="../css/bootstrap.css" rel="stylesheet">
   </head>
   <body>
-    <header>
-      <h1><a href="{$BASE_URL}">Fritter</a></h1>
-      {if $USERNAME}
-        {include file='common/menu_logged_in.tpl'}
-      {else}
-        {include file='common/menu_logged_out.tpl'}
-      {/if}
-    </header>
-    {if $USERNAME}
-    <div id="tweet_form">
-      <form action="{$BASE_URL}actions/tweets/tweet.php" method="post">
-        <textarea name="tweet" placeholder="Say something"></textarea>
-        <input type="submit">
-      </form>
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">
+              Toggle navigation
+            </span>
+            <span class="icon-bar">
+            </span>
+            <span class="icon-bar">
+            </span>
+            <span class="icon-bar">
+            </span>
+          </button>
+          <a class="navbar-brand" href="main.php">
+            <img href="" src="../resources/logo.png" style="width:6%;hight:6%">
+            Gestorax - Inventory Management
+          </a>
+        </div>
+      </div>
     </div>
-    {/if}
-    <div id="error_messages">
-    {foreach $ERROR_MESSAGES as $error}
-      <div class="error">{$error}<a class="close" href="#">X</a></div>
-    {/foreach}
-    </div>
-    <div id="success_messages">
-    {foreach $SUCCESS_MESSAGES as $success}
-      <div class="success">{$success}<a class="close" href="#">X</a></div>
-    {/foreach}
-    </div>
+	<!-- Bootstrap core JavaScript
+================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="../javascript/jquery.js">
+    </script>
+    <script src="../javascript/bootstrap.js">
+    </script>
+    <script src="../javascript/bootstrap-tagsinput.js">
+    </script>
+  </body>
+</html>

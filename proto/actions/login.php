@@ -1,26 +1,24 @@
 <?php
 try
 {
-include_once('../config/init.php');
+	include_once('../config/init.php');
+
+	include_once($BASE_DIR . 'database/users.php');
 
 
-$email = $_POST['email'];
+	$email = $_POST['email'];
 
-$password = $_POST['password'];
+	$password = $_POST['password'];
 
 
-$idreader = 0;
+	$idreader = 0;
 
 	if (isset($_POST['email']))
 	{
 		$error = 1;
 
-		$stmt = $conn->prepare('
-		select email, password
-		from reader');
-		$stmt->execute();
-		$stmt->setFetchMode(PDO::FETCH_ASSOC);
-		$result = $stmt->fetchAll();
+		
+		$result = getAllUsersEmailsAndPasswords();
 
 
 		for($i = 0; $i < count($result); ++$i)
@@ -52,7 +50,7 @@ $idreader = 0;
 		}
 		else
 		{
-			header("Location: ../pages/index.html");
+			header("Location: ../pages/main.php");
 
 			exit();
 		}
