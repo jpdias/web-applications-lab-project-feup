@@ -19,7 +19,14 @@
 			$starttime = microtime(true);
 			
 			
-			$result = getAllItemsByTags();
+			if(isset($_GET['onlyavailableitems']))
+			{
+				$result = getAllItemsByTags($_GET['tags'], $_GET['onlyavailableitems']);
+			}
+			else
+			{
+				$result = getAllItemsByTags($_GET['tags'], "no");
+			}
 			
 			
 			$endtime = microtime(true);
@@ -42,8 +49,14 @@
 			{
 				$starttime = microtime(true);
 			
-			
-				$result = getAllItemsByItemNumber();
+				if(isset($_GET['onlyavailableitems']))
+				{
+					$result = getAllItemsByItemNumber($_GET['itemnumber'], $_GET['onlyavailableitems']);
+				}
+				else
+				{
+					$result = getAllItemsByItemNumber($_GET['itemnumber'], "no");
+				}
 			
 			
 				$endtime = microtime(true);
@@ -66,7 +79,7 @@
 	{
 		echo $e->getMessage();
 	}
-	
+
 	$smarty->assign('results', $result);
   
   $smarty->display('search/search_results.tpl');

@@ -1,5 +1,51 @@
 <?php
 
+function getAllUsers()
+{
+    global $conn;
+    
+	try
+	{
+		$stmt = $conn->prepare('
+		select idReader, username, address, birthdate, email, firstname, lastname, currentstatus
+		from reader');
+		$stmt->execute();
+		$stmt->setFetchMode(PDO::FETCH_ASSOC);
+		$result = $stmt->fetchAll();
+		
+		
+		return $result;
+	}
+	catch (Exception $e)
+	{
+		echo $e->getMessage();
+	}
+}
+
+
+function getUserById($readerid)
+{
+    global $conn;
+    
+	try
+	{
+		$stmt = $conn->prepare('
+		select idReader, username, address, birthdate, email, firstname, lastname, currentstatus
+		from reader
+		where idReader=' . $readerid . '');
+		$stmt->execute();
+		$stmt->setFetchMode(PDO::FETCH_ASSOC);
+		$result = $stmt->fetchAll();
+		
+		
+		return $result;
+	}
+	catch (Exception $e)
+	{
+		echo $e->getMessage();
+	}
+}
+
 function getAllUsersEmails()
 {
     global $conn;

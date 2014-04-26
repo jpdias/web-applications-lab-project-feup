@@ -1,6 +1,52 @@
 <?php
 
-function getAllItemsByTags()
+function getAllItems()
+{
+    global $conn;
+    
+	try
+	{
+		$stmt = $conn->prepare('
+		select idItem, name, image, description, qrcode, currentstatus
+		from item');
+		$stmt->execute();
+		$stmt->setFetchMode(PDO::FETCH_ASSOC);
+		$result = $stmt->fetchAll();
+		
+		
+		return $result;
+	}
+	catch (Exception $e)
+	{
+		echo $e->getMessage();
+	}
+}
+
+
+function getItemById($itemid)
+{
+    global $conn;
+    
+	try
+	{
+		$stmt = $conn->prepare('
+		select idItem, name, image, description, qrcode, currentstatus
+		from item
+		where idItem=' . $itemid . '');
+		$stmt->execute();
+		$stmt->setFetchMode(PDO::FETCH_ASSOC);
+		$result = $stmt->fetchAll();
+		
+		
+		return $result;
+	}
+	catch (Exception $e)
+	{
+		echo $e->getMessage();
+	}
+}
+
+function getAllItemsByTags($tags, $onlyavailableitems)
 {
     global $conn;
     
@@ -9,7 +55,7 @@ function getAllItemsByTags()
 		$whereStmt = "";
 
 
-		$tag = strtok($_GET['tags'], ",");
+		$tag = strtok($tags, ",");
 		
 		while ($tag != false)
 		{
@@ -26,7 +72,7 @@ function getAllItemsByTags()
 		}
 		
 		
-		if(isset($_GET['onlyavailableitems']) && $_GET['onlyavailableitems'] == "yes")
+		if(isset($onlyavailableitems) && $onlyavailableitems == "yes")
 		{
 			$whereStmt = $whereStmt . ' and currentstatus = ' . '\'available\'';
 		}
@@ -42,7 +88,7 @@ function getAllItemsByTags()
 		
 		
 		$stmt = $conn->prepare('
-		select name, image, description, qrcode, currentstatus
+		select idItem, name, image, description, qrcode, currentstatus
 		from item' . $whereStmt);
 		$stmt->execute();
 		$stmt->setFetchMode(PDO::FETCH_ASSOC);
@@ -57,7 +103,7 @@ function getAllItemsByTags()
 	}
 }
 
-function getAllItemsByItemNumber()
+function getAllItemsByItemNumber($itemnumber, $onlyavailableitems)
 {
     global $conn;
     
@@ -66,10 +112,10 @@ function getAllItemsByItemNumber()
 		$whereStmt = "";
 
 
-		$whereStmt = ' where (idItem = ' . $_GET['itemnumber'];
+		$whereStmt = ' where (idItem = ' . $itemnumber . ')';
 		
 		
-		if(isset($_GET['onlyavailableitems']) && $_GET['onlyavailableitems'] == "yes")
+		if(isset($onlyavailableitems) && $onlyavailableitems == "yes")
 		{
 			$whereStmt = $whereStmt . ' and currentstatus = ' . '\'available\'';
 		}
@@ -85,7 +131,7 @@ function getAllItemsByItemNumber()
 		
 		
 		$stmt = $conn->prepare('
-		select name, image, description, qrcode, currentstatus
+		select idItem, name, image, description, qrcode, currentstatus
 		from item' . $whereStmt);
 		$stmt->execute();
 		$stmt->setFetchMode(PDO::FETCH_ASSOC);
