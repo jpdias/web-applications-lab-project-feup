@@ -37,13 +37,7 @@ try
 		{
 			if($error == 1)
 			{
-				echo '<script language="javascript">';
-				echo 'alert("Erro: Email já registado!")';
-				echo '</script>';
-				
-				echo '<META HTTP-EQUIV="Refresh" Content="0; URL=../pages/signup.html">';    
-			
-				exit;
+				echo '<link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css"><script src="../javascript/jquery.min.js"></script><script src="../javascript/bootstrap.min.js"></script><script src="../javascript/bootbox.min.js"></script><script>$(document).ready(function() {bootbox.alert("Email ja registado!", function() {self.location="../pages/signup.php";});});</script>';
 			}
 		}
 		else
@@ -56,13 +50,7 @@ try
 			registerUser($idreader, $username, $_POST['password'], $_POST['city'], $_POST['birthdate'], $_POST['email'], $_POST['firstname'], $_POST['lastname']);
 			
 			
-			echo '<script language="javascript">';
-			echo 'alert("Novo utilizador registado com sucesso!")';
-			echo '</script>';
-			
-			echo '<META HTTP-EQUIV="Refresh" Content="0; URL=../pages/main.php">';    
-			
-			exit;
+			echo '<link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css"><script src="../javascript/jquery.min.js"></script><script src="../javascript/bootstrap.min.js"></script><script src="../javascript/bootbox.min.js"></script><script>$(document).ready(function() {bootbox.alert("Novo utilizador registado com sucesso!", function() {self.location="../pages/main.php";});});</script>';
 		}
 	}
 }
