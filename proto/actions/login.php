@@ -27,9 +27,9 @@ try
 			{
 				if($_POST['password'] == $result[$i]['password'])
 				{
-					session_start();
+					$_SESSION['username'] = $result[$i]['email'];
 					
-					$_SESSION['id'] = $result[$i]['email'];
+					$_SESSION['success_messages'][] = 'Login efetuado com sucesso!';
 					
 					
 					$error = 0;
@@ -43,17 +43,14 @@ try
 		if($error != 0)
 		{
 			if($error == 1)
-				echo '<h3>Erro: O email não se encontra registado!</h3>';
+				$_SESSION['error_messages'][] = 'O email não se encontra registado!';  
 				
 			if($error == 2)
-				echo '<h3>Erro: Password errada!</h3>';
+				$_SESSION['error_messages'][] = 'Password errada!'; 
 		}
-		else
-		{
-			header("Location: ../pages/main.php");
-
-			exit();
-		}
+		
+		
+		header('Location: ../pages/main.php');
 	}
 }
 catch (Exception $e)
