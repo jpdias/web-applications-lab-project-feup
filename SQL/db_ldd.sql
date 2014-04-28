@@ -36,7 +36,7 @@ CREATE TABLE admin
 (
 idAdmin integer not null primary key,
 username text unique not null,
-password text unique not null
+password text not null
 );
 
 DROP TYPE IF EXISTS readerstatus;
@@ -47,7 +47,7 @@ CREATE TABLE reader
 (
 idReader integer not null primary key,
 username text unique not null,
-password text unique not null,
+password text not null,
 address text,
 birthdate date,
 email text unique not null,
@@ -84,7 +84,7 @@ CREATE TYPE requisitionstatus AS enum ('closed', 'open');
 
 CREATE TABLE requisition
 (
-idRequistion integer not null primary key,
+idRequisition integer not null primary key,
 comment text not null,
 finaldate date not null,
 deliverydate date not null check(deliverydate <= finaldate),
