@@ -10,6 +10,8 @@ try
 	
 	$_SESSION['idreader'] = "";
 	
+	$_SESSION['idmanager'] = "";
+	
 	session_destroy();
 	
 	

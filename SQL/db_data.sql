@@ -9,9 +9,9 @@ insert into inventory values (1, 'inventório principal');
 
 insert into admin values (1, 'admin', 'admin');
 
-insert into reader values (1, 'reader1', 'reader1', 'rua do reader 1', '1993-01-01', 'reader1@email.com', 'reader', '1', 'active');
-insert into reader values (2, 'reader2', 'reader2', 'rua do reader 2', '1993-02-02', 'reader2@email.com', 'reader', '2', 'active');
-insert into reader values (3, 'reader3', 'reader3', 'rua do reader 3', '1993-03-03', 'reader3@email.com', 'reader', '3', 'active');
+insert into reader values (1, 'reader1', 'd4313748fd463f49cb630922c5533af29d2f4fe0', 'rua do reader 1', '1993-01-01', 'reader1@email.com', 'reader', '1', 'active');
+insert into reader values (2, 'reader2', '9d272404caa43207c4787967c230f3cb867b2e2f', 'rua do reader 2', '1993-02-02', 'reader2@email.com', 'reader', '2', 'active');
+insert into reader values (3, 'reader3', 'db5a5191caac93c53ac8b3d22a2cc768dee75af8', 'rua do reader 3', '1993-03-03', 'reader3@email.com', 'reader', '3', 'active');
 
 insert into manager values (1, 1, 1);
 

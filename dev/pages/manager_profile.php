@@ -4,28 +4,28 @@
   include_once($BASE_DIR . 'database/users.php');
   
   
-	if(isset($_GET['id']) && $_GET['id'] == $_SESSION['idreader'])
+	if(isset($_GET['id']) && $_GET['id'] == $_SESSION['idmanager'])
 	{
 	  $smarty->display('common/header.tpl');
 	  
-	  $smarty->display('user/sidebar_overview.tpl');
+	  $smarty->display('manager/sidebar_profile.tpl');
 	  
 	  
-	  $userRequests = null;
+	  $users = null;
 	  
-		try
+	  try
 		{
-			$userRequests = getAllUserRequests($_SESSION['idreader']);
+			$users = getUserById($_SESSION['idreader']);
 		}
 		catch (Exception $e)
 		{
 			echo $e->getMessage();
 		}
 		
-		$smarty->assign('userRequests', $userRequests);
+		$smarty->assign('users', $users);
 	  
 	  
-	  $smarty->display('user/dash.tpl');
+	  $smarty->display('manager/profile.tpl');
 	}
 	else
 	{

@@ -25,11 +25,27 @@ try
 		{
 			if($_POST['email'] == $result[$i]['email'])
 			{
-				if($_POST['password'] == $result[$i]['password'])
+				if(sha1($_POST['password']) == $result[$i]['password'])
 				{
 					$_SESSION['username'] = $result[$i]['username'];
 					
 					$_SESSION['idreader'] = $result[$i]['idreader'];
+					
+					
+					$managers = getAllManagers();
+					
+					
+					for($j = 0; $j < count($managers); ++$j)
+					{
+						if($result[$i]['idreader'] == $managers[$j]['idreader'])
+						{
+							$_SESSION['idmanager'] = $managers[$j]['idmanager'];
+							
+							
+							break;
+						}
+					}
+					
 					
 					$_SESSION['success_messages'][] = 'Login successful!';
 					

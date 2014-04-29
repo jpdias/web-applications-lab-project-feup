@@ -24,6 +24,7 @@
   $smarty->assign('FORM_VALUES', $_SESSION['form_values']);
   $smarty->assign('USERNAME', $_SESSION['username']);
   $smarty->assign('IDREADER', $_SESSION['idreader']);
+  $smarty->assign('IDMANAGER', $_SESSION['idmanager']);
   
   unset($_SESSION['success_messages']);
   unset($_SESSION['error_messages']);  

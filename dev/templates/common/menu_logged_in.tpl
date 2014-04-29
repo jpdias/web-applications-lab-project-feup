@@ -20,7 +20,11 @@
     <div class="navbar-collapse collapse">
       <form class="navbar-form navbar-right" role="form" method="post" action="../actions/logout.php">
         <div class="form-group">
-          <a type="submit" href="../pages/user_dash.php?id={$IDREADER}">Hello, {$USERNAME}!</a>
+		{if $IDMANAGER == ""}
+		  <a type="submit" href="../pages/user_dash.php?id={$IDREADER}">Hello, {$USERNAME}!</a>
+		{else}
+		  <a type="submit" href="../pages/manager_dash.php?id={$IDMANAGER}">Hello, {$USERNAME}!</a>
+		{/if}
         </div>
         <button type="submit" class="btn btn-danger">
           Sign out

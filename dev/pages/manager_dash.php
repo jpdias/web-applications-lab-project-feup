@@ -4,16 +4,16 @@
   include_once($BASE_DIR . 'database/users.php');
   
   
-	if(isset($_GET['id']) && $_GET['id'] == $_SESSION['idreader'])
+	if(isset($_GET['id']) && $_GET['id'] == $_SESSION['idmanager'])
 	{
 	  $smarty->display('common/header.tpl');
 	  
-	  $smarty->display('user/sidebar_overview.tpl');
+	  $smarty->display('manager/sidebar_overview.tpl');
 	  
 	  
 	  $userRequests = null;
 	  
-		try
+	  try
 		{
 			$userRequests = getAllUserRequests($_SESSION['idreader']);
 		}
@@ -25,7 +25,7 @@
 		$smarty->assign('userRequests', $userRequests);
 	  
 	  
-	  $smarty->display('user/dash.tpl');
+	  $smarty->display('manager/dash.tpl');
 	}
 	else
 	{

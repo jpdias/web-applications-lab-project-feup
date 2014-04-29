@@ -6,30 +6,23 @@
   
 	if(isset($_GET['id']) && $_GET['id'] == $_SESSION['idreader'])
 	{
-  
 	  $smarty->display('common/header.tpl');
 	  
-	  $smarty->display('user/sidebar.tpl');
+	  $smarty->display('user/sidebar_profile.tpl');
 	  
 	  
-	  $result = null;
+	  $users = null;
 	  
-	  try
+		try
 		{
-			$result = getUserById($_SESSION['idreader']);
-
-
-			for($i = 0; $i < count($result); ++$i)
-			{
-				
-			}
+			$users = getUserById($_SESSION['idreader']);
 		}
 		catch (Exception $e)
 		{
 			echo $e->getMessage();
 		}
 		
-		$smarty->assign('results', $result);
+		$smarty->assign('users', $users);
 	  
 	  
 	  $smarty->display('user/profile.tpl');
