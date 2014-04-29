@@ -20,10 +20,10 @@
 		{include file='common/menu_logged_out.tpl'}
 	{/if}
 	{foreach $ERROR_MESSAGES as $error_message}
-		<center><div id="error_message" style="color:#ffffff;background-color:#d9534f;height:8%;width:100%;margin-top:-8px"><h4>{$error_message}<a style="float:right;" href="#" onclick="$(this).parent().remove();">X</a></h4></div></center>
+		<center><div id="error_message" style="color:#ffffff;background-color:#d9534f;height:8%;width:100%;margin-top:-8px"><h4>{$error_message}<a style="float:right;" href="#" onclick="$(this).parent().remove();"><i class="glyphicon glyphicon-remove"></i></a></h4></div></center>
     {/foreach}
 	{foreach $SUCCESS_MESSAGES as $success_message}
-		<center><div id="success_message" style="color:#ffffff;background-color:#5cb85c;height:8%;width:100%;margin-top:-8px"><h4>{$success_message}<a style="float:right;" href="#" onclick="$(this).parent().remove();">X</a></h4></div></center>
+		<center><div id="success_message" style="color:#ffffff;background-color:#5cb85c;height:8%;width:100%;margin-top:-8px"><h4>{$success_message}<a style="float:right;" href="#" onclick="$(this).parent().remove();"><i class="glyphicon glyphicon-remove"></i></a></h4></div></center>
     {/foreach}
 	<!-- Bootstrap core JavaScript
 ================================================== -->
