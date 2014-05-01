@@ -201,4 +201,66 @@ function editUserExceptPassword($idreader, $address, $firstname, $lastname)
 		echo $e->getMessage();
 	}
 }
+
+function disableUserAccount($idreader)
+{
+    global $conn;
+	
+	$disabled = 'closed';
+    
+	try
+	{
+		$stmt = $conn->prepare('update reader
+		set currentstatus=:currentstatus
+		where idReader=' . $idreader . '');
+		$stmt->bindParam(':currentstatus', $disabled, PDO::PARAM_STR);
+		$stmt->execute();
+	}
+	catch (Exception $e)
+	{
+		echo $e->getMessage();
+	}
+}
+
+function changeUserPermissions($idreader, $permissions)
+{
+    global $conn;
+	
+	if($permissions == 'manager')
+	{
+		try
+		{
+			$stmt = $conn->prepare('
+			select idManager
+			from manager');
+			$stmt->execute();
+			$stmt->setFetchMode(PDO::FETCH_ASSOC);
+			$result = $stmt->fetchAll();
+			
+			$idManager = count($result) + 1;
+		
+			$stmt = $conn->prepare('insert into manager values (:idManager, 1, :idReader)');
+			$stmt->bindParam(':idManager', $idManager, PDO::PARAM_STR);
+			$stmt->bindParam(':idReader', $idreader, PDO::PARAM_STR);
+			$stmt->execute();
+		}
+		catch (Exception $e)
+		{
+			echo $e->getMessage();
+		}
+	}
+	else
+	{
+		try
+		{
+			$stmt = $conn->prepare('delete from manager
+			where idReader=' . $idreader . '');
+			$stmt->execute();
+		}
+		catch (Exception $e)
+		{
+			echo $e->getMessage();
+		}
+	}
+}
 ?>

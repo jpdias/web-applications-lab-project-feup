@@ -22,7 +22,12 @@
             </li>
             <li>
               <a href="#">
-                City
+                Address
+              </a>
+            </li>
+			<li>
+              <a href="#">
+                E-mail
               </a>
             </li>
           </ul>
@@ -56,7 +61,7 @@
               Name
             </th>
             <th>
-              Email
+              E-mail
             </th>
             <th>
               Info
@@ -102,7 +107,7 @@
               Name
             </th>
             <th>
-              Email
+              E-mail
             </th>
             <th>
               Info

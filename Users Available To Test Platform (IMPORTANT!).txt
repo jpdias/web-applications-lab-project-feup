@@ -1,0 +1,10 @@
+Manager:
+email: reader1@email.com
+password: reader1
+
+Reader:
+email: reader2@email.com
+password: reader2
+
+email: reader3@email.com
+password: reader3

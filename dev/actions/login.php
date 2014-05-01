@@ -25,35 +25,42 @@ try
 		{
 			if($_POST['email'] == $result[$i]['email'])
 			{
-				if(sha1($_POST['password']) == $result[$i]['password'])
+				if($result[$i]['currentstatus'] == 'active')
 				{
-					$_SESSION['username'] = $result[$i]['username'];
-					
-					$_SESSION['idreader'] = $result[$i]['idreader'];
-					
-					
-					$managers = getAllManagers();
-					
-					
-					for($j = 0; $j < count($managers); ++$j)
+					if(sha1($_POST['password']) == $result[$i]['password'])
 					{
-						if($result[$i]['idreader'] == $managers[$j]['idreader'])
+						$_SESSION['username'] = $result[$i]['username'];
+						
+						$_SESSION['idreader'] = $result[$i]['idreader'];
+						
+						
+						$managers = getAllManagers();
+						
+						
+						for($j = 0; $j < count($managers); ++$j)
 						{
-							$_SESSION['idmanager'] = $managers[$j]['idmanager'];
-							
-							
-							break;
+							if($result[$i]['idreader'] == $managers[$j]['idreader'])
+							{
+								$_SESSION['idmanager'] = $managers[$j]['idmanager'];
+								
+								
+								break;
+							}
 						}
+						
+						
+						$_SESSION['success_messages'][] = 'Login successful!';
+						
+						
+						$error = 0;
 					}
-					
-					
-					$_SESSION['success_messages'][] = 'Login successful!';
-					
-					
-					$error = 0;
+					else
+						$error = 2;
 				}
 				else
-					$error = 2;
+				{
+					$error = 3;
+				}
 			}
 		}
 
@@ -65,6 +72,9 @@ try
 				
 			if($error == 2)
 				$_SESSION['error_messages'][] = 'Wrong password!'; 
+				
+			if($error == 3)
+				$_SESSION['error_messages'][] = 'Account blocked or disabled!'; 
 		}
 		
 		

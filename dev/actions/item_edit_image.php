@@ -7,16 +7,11 @@ try
 	
 	
 	define ("MAX_SIZE", "1000000"); // in bytes
+
 	
-	
-	if($_POST['itemname'] != "" && $_POST['itemdescription'] != "")
+	if($_POST['itemid'] != "")
 	{
-		$itemid = count(getAllItems()) + 1;
-		
-		
 		$image = $_FILES['file']['name'];
-		
-		$error = 0;
 
 		if($image)
 		{
@@ -52,40 +47,26 @@ try
 
 					if ($uploaded)
 					{
-						addItem($itemid, $_POST['itemname'], $_POST['itemdescription']);
+						editItemImage($_POST['itemid'], $newname);
 						
 						
-						editItemImage($itemid, $newname);
-						
-						
-						$_SESSION['success_messages'][] = 'Item added successfully!';
+						$_SESSION['success_messages'][] = 'Item image edited successfully!';  
 					}
 					else
 					{
 						$_SESSION['error_messages'][] = 'Error uploading image file!';
-						
-						$error = 1;
 					}
 				}
 			}
 		}
 		else
 		{
-			if($error == 0)
-			{
-				addItem($itemid, $_POST['itemname'], $_POST['itemdescription']);
-				
-				$_SESSION['success_messages'][] = 'Item added successfully!';
-			}
+			$_SESSION['error_messages'][] = 'No image file selected!';
 		}
 	}
-	else
-	{
-		$_SESSION['error_messages'][] = 'Error adding item!';
-	}
 	
 	
-	header('Location: ../pages/manager_items.php?id=' . $_SESSION['idmanager'] . '');
+	header('Location: ../pages/manager_item.php?id=' . $_SESSION['idmanager'] . '&itemid=' . $_POST['itemid']);
 	
 }
 catch (Exception $e)

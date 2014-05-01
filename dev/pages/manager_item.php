@@ -25,10 +25,10 @@
 			echo $e->getMessage();
 		}
 		
-		$smarty->assign('items', $item);
+		$smarty->assign('items', $items);
 	  
 	  
-	  $smarty->display('manager/items.tpl');
+	  $smarty->display('manager/item.tpl');
 	}
 	else
 	{

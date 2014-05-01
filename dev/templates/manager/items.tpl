@@ -161,7 +161,7 @@
         <h4 class="modal-title" id="myModalLabel">
           Add Item
         </h4>
-        <form action="../actions/item_add.php" method="post">
+        <form action="../actions/item_add.php" method="post" enctype="multipart/form-data">
           <div class="row">
             <br>
             <div class="col-md-12">
@@ -171,7 +171,6 @@
                 </span>
                 <input type="text" class="form-control" name="itemname" placeholder="Item Name">
               </div>
-              
               <br>
             </div>
             <div class="col-md-12">
@@ -181,9 +180,16 @@
                 </span>
                 <input type="text" class="form-control" name="itemdescription" placeholder="Item Description">
               </div>
-              
               <br>
             </div>
+            <div class="col-md-12">
+              <br>
+              <div class="input-group">
+				<h4>Item Image:</h4>
+                <input type="file" name="file" id="file">
+              </div>
+            </div>
+            <br>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">

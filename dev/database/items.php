@@ -210,6 +210,24 @@ function editItem($iditem, $name, $description)
 	}
 }
 
+function editItemImage($iditem, $image)
+{
+    global $conn;
+    
+	try
+	{
+		$stmt = $conn->prepare('update item
+		set image=:image
+		where idItem=' . $iditem . '');
+		$stmt->bindParam(':image', $image, PDO::PARAM_STR);
+		$stmt->execute();
+	}
+	catch (Exception $e)
+	{
+		echo $e->getMessage();
+	}
+}
+
 function addItem($iditem, $name, $description)
 {
     global $conn;
@@ -220,6 +238,26 @@ function addItem($iditem, $name, $description)
 		$stmt->bindParam(':iditem', $iditem, PDO::PARAM_STR);
 		$stmt->bindParam(':name', $name, PDO::PARAM_STR);
 		$stmt->bindParam(':description', $description, PDO::PARAM_STR);
+		$stmt->execute();
+	}
+	catch (Exception $e)
+	{
+		echo $e->getMessage();
+	}
+}
+
+function disableItem($iditem)
+{
+    global $conn;
+	
+	$disabled = 'withdrawn';
+    
+	try
+	{
+		$stmt = $conn->prepare('update item
+		set currentstatus=:currentstatus
+		where idItem=' . $iditem . '');
+		$stmt->bindParam(':currentstatus', $disabled, PDO::PARAM_STR);
 		$stmt->execute();
 	}
 	catch (Exception $e)
