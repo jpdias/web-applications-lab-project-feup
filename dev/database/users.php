@@ -22,7 +22,7 @@ function getAllUsers()
 	}
 }
 
-function getAllUsersByOrderAscending()
+function getAllActiveUsers()
 {
     global $conn;
     
@@ -31,6 +31,7 @@ function getAllUsersByOrderAscending()
 		$stmt = $conn->prepare('
 		select idReader, username, password, address, birthdate, email, firstname, lastname, currentstatus
 		from reader
+		where currentstatus=\'active\' 
 		order by idReader asc');
 		$stmt->execute();
 		$stmt->setFetchMode(PDO::FETCH_ASSOC);
@@ -45,7 +46,7 @@ function getAllUsersByOrderAscending()
 	}
 }
 
-function getAllUsersByOrderDescending()
+function getAllNewUsers()
 {
     global $conn;
     
@@ -123,7 +124,8 @@ function getAllUserRequests($idreader)
 		$stmt = $conn->prepare('
 		select reader.idReader, reader.username, requisition.idRequisition, requisition.comment, requisition.initialdate, requisition.finaldate, requisition.deliverydate, requisition.currentstatus, requisition.idItem, item.name
 		from reader, requisition, item
-		where reader.idReader=' . $idreader . ' and ' . 'requisition.idReader=' . $idreader . ' and ' . 'item.idItem=' . 'requisition.idItem' . '');
+		where reader.idReader=' . $idreader . ' and ' . 'requisition.idReader=' . $idreader . ' and ' . 'item.idItem=' . 'requisition.idItem' . ' ' .
+		'order by requisition.idRequisition desc');
 		$stmt->execute();
 		$stmt->setFetchMode(PDO::FETCH_ASSOC);
 		$result = $stmt->fetchAll();

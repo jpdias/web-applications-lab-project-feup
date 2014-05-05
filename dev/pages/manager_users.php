@@ -17,9 +17,9 @@
   
 		try
 		{
-			$activeusers = getAllUsersByOrderAscending();
+			$activeusers = getAllActiveUsers();
 			
-			$newusers = getAllUsersByOrderDescending();
+			$newusers = getAllNewUsers();
 		}
 		catch (Exception $e)
 		{

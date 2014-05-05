@@ -14,6 +14,10 @@
         </i>
         Search Results
       </h1>
+	  
+	  <br>
+	  &nbsp;&nbsp;&nbsp;
+	  {$resultsCount} result(s) for {$resultsParameter} in {$resultsTimeElapsed} ms
       
       <br>
       <div class="span9" id="results-main">
@@ -31,35 +35,90 @@
                 
               </a>
             </h3>
-            <p class="short-desc pull-left">
+            <p class="pull-left">
               
               {$result.description}
               
             </p>
-            <div class="price-avail pull-right">
-              <!-- star rating inputs -->
-              <input name="rating1" type="radio" class="star">
-              <input name="rating2" type="radio" class="star">
-              <input name="rating3" type="radio" class="star">
-              <input name="rating4" type="radio" class="star">
-              <input name="rating5" type="radio" class="star" checked="checked">
-              <!-- price and availability -->
-              <p class="avail">
-                Availability: 
-                {$result.currentstatus}
-                
-              </p>
-              <button class="btn btn-success">
-                Request 
-                <i class="glyphicon glyphicon-tag">
-                </i>
-              </button>
-            </div>
+            <p class="pull-right">
+				{if $result.currentstatus == 'available'}
+					Availability: {$result.currentstatus}
+					<br>
+					<br>
+					<button class="btn btn-success" data-toggle="modal" data-target="#requestItemModal" onclick="document.getElementById('itemidinput').value = {$result.iditem}">
+						<i class="glyphicon glyphicon-tag">
+						</i>
+						Request
+					</button>
+				{else}
+					Availability: {$result.currentstatus}
+					<br>
+					<br>
+					<button class="btn btn-primary" data-toggle="modal" data-target="#reserverModal">
+						<i class="glyphicon glyphicon-tag">
+						</i>
+						Reserve 
+					</button>
+				{/if}
+            </p>
           </section>
           
           {/foreach}
-          <br>
+        
+		</div>
+      </div>
+    </div>
+	
+	<div class="modal fade" id="requestItemModal" tabindex="-1" role="dialog" aria-labelledby="requestItemModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+              &times;
+            </button>
+            <h3 class="modal-title" id="requestItemModalLabel">
+              Request Item
+            </h3>
+          </div>
+          <form action="../actions/request_add.php" method="post">
+            <input type="hidden" id="readeridinput" name="readerid" value="{$readerid}">
+			<input type="hidden" id="itemidinput" name="itemid" value="0">
+            <div class="row">
+              <div class="col-md-12">
+                <br>
+                
+                <div class="col-md-12">
+                  <div class="input-group">
+                    Are you sure you want to request this item?
+                  </div>
+                  
+                  <br>
+                </div>
+				
+				<div class="col-md-12">
+                  <div class="input-group">
+                    <span class="input-group-addon">
+                      Comment
+                    </span>
+                    <input type="text" class="form-control" name="comment" placeholder="Comment">
+                  </div>
+                  
+                  <br>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">
+                No
+              </button>
+              <button type="submit" class="btn btn-success">
+                Yes
+              </button>
+            </form>
+          </div>
         </div>
       </div>
     </div>
+	
   </div>
+</div>

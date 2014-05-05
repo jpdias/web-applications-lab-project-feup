@@ -72,9 +72,9 @@
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
               &times;
             </button>
-            <h4 class="modal-title" id="editItemDetailModalLabel">
+            <h3 class="modal-title" id="editItemDetailModalLabel">
               Edit item details
-            </h4>
+            </h3>
           </div>
           <form action="../actions/item_edit.php" method="post">
             <input type="hidden" name="itemid" value="{$item.iditem}">
@@ -128,9 +128,9 @@
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
               &times;
             </button>
-            <h4 class="modal-title" id="editItemImageModalLabel">
+            <h3 class="modal-title" id="editItemImageModalLabel">
               Edit item image
-            </h4>
+            </h3>
           </div>
           <form action="../actions/item_edit_image.php" method="post" enctype="multipart/form-data">
             <input type="hidden" name="itemid" value="{$item.iditem}">

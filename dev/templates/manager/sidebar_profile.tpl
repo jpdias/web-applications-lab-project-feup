@@ -25,6 +25,11 @@
             Inventory
           </a>
         </li>
+		<li>
+          <a href="../pages/manager_requests.php?id={$IDMANAGER}">
+            Requests
+          </a>
+        </li>
         <li>
           <a href="../pages/manager_users.php?id={$IDMANAGER}">
             Users

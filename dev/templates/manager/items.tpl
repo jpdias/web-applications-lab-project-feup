@@ -143,7 +143,7 @@
   <br>
   <br>
   <h4>
-    <button class="btn btn-lg btn-success" data-toggle="modal" data-target="#myModal">
+    <button class="btn btn-lg btn-success" data-toggle="modal" data-target="#addItemModal">
       <i class="glyphicon glyphicon-plus">
       </i>
       Add Item
@@ -151,16 +151,16 @@
   </h4>
 </div>
 
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="addItemModal" tabindex="-1" role="dialog" aria-labelledby="addItemModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
           &times;
         </button>
-        <h4 class="modal-title" id="myModalLabel">
+        <h3 class="modal-title" id="addItemModalLabel">
           Add Item
-        </h4>
+        </h3>
         <form action="../actions/item_add.php" method="post" enctype="multipart/form-data">
           <div class="row">
             <br>

@@ -4,7 +4,7 @@
   </h1>
   
   <h2 class="sub-header">
-    Latest requests
+    My latest requests
   </h2>
   <div class="table-responsive">
     <table class="table table-striped">

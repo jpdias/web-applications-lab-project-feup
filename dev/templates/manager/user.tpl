@@ -161,9 +161,9 @@
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
               &times;
             </button>
-            <h4 class="modal-title" id="disableUserAccountModalLabel">
+            <h3 class="modal-title" id="disableUserAccountModalLabel">
               Disable account
-            </h4>
+            </h3>
           </div>
           <form action="../actions/user_disable.php" method="post">
             <input type="hidden" name="readerid" value="{$user.idreader}">
@@ -200,9 +200,9 @@
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
               &times;
             </button>
-            <h4 class="modal-title" id="enableUserAccountModalLabel">
-              Disable account
-            </h4>
+            <h3 class="modal-title" id="enableUserAccountModalLabel">
+              Enable account
+            </h3>
           </div>
           <form action="../actions/user_enable.php" method="post">
             <input type="hidden" name="readerid" value="{$user.idreader}">
@@ -239,9 +239,9 @@
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
               &times;
             </button>
-            <h4 class="modal-title" id="readerPermissionsModalLabel">
-              Disable account
-            </h4>
+            <h3 class="modal-title" id="readerPermissionsModalLabel">
+              Account's permissions
+            </h3>
           </div>
           <form action="../actions/user_permissions.php" method="post">
             <input type="hidden" name="readerid" value="{$user.idreader}">
@@ -252,7 +252,7 @@
                 
                 <div class="col-md-12">
                   <div class="input-group">
-                    Are you sure you want to change this account permissions to reader?
+                    Are you sure you want to change this account's permissions to reader?
                   </div>
                   
                   <br>
@@ -279,9 +279,9 @@
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
               &times;
             </button>
-            <h4 class="modal-title" id="managerPermissionsModalLabel">
-              Disable account
-            </h4>
+            <h3 class="modal-title" id="managerPermissionsModalLabel">
+              Account's permissions
+            </h3>
           </div>
           <form action="../actions/user_permissions.php" method="post">
             <input type="hidden" name="readerid" value="{$user.idreader}">
@@ -292,7 +292,7 @@
                 
                 <div class="col-md-12">
                   <div class="input-group">
-                    Are you sure you want to change this account permissions to manager?
+                    Are you sure you want to change this account's permissions to manager?
                   </div>
                   
                   <br>

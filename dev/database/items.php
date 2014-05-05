@@ -22,7 +22,7 @@ function getAllItems()
 	}
 }
 
-function getAllItemsByOrderAscending()
+function getAllActiveItems()
 {
     global $conn;
     
@@ -31,6 +31,7 @@ function getAllItemsByOrderAscending()
 		$stmt = $conn->prepare('
 		select idItem, name, image, description, qrcode, currentstatus
 		from item
+		where (currentstatus=\'available\' or currentstatus=\'unavailable\')
 		order by idItem asc');
 		$stmt->execute();
 		$stmt->setFetchMode(PDO::FETCH_ASSOC);
@@ -45,7 +46,7 @@ function getAllItemsByOrderAscending()
 	}
 }
 
-function getAllItemsByOrderDescending()
+function getAllNewItems()
 {
     global $conn;
     
@@ -134,7 +135,8 @@ function getAllItemsByTags($tags, $onlyavailableitems)
 		
 		$stmt = $conn->prepare('
 		select idItem, name, image, description, qrcode, currentstatus
-		from item' . $whereStmt);
+		from item' . $whereStmt .
+		'order by currentstatus asc');
 		$stmt->execute();
 		$stmt->setFetchMode(PDO::FETCH_ASSOC);
 		$result = $stmt->fetchAll();
@@ -177,7 +179,8 @@ function getAllItemsByItemNumber($itemnumber, $onlyavailableitems)
 		
 		$stmt = $conn->prepare('
 		select idItem, name, image, description, qrcode, currentstatus
-		from item' . $whereStmt);
+		from item' . $whereStmt .
+		'order by currentstatus asc');
 		$stmt->execute();
 		$stmt->setFetchMode(PDO::FETCH_ASSOC);
 		$result = $stmt->fetchAll();
@@ -235,7 +238,7 @@ function addItem($iditem, $name, $description)
 	try
 	{
 		$stmt = $conn->prepare('insert into item values(:iditem, :name, null, :description, null, \'available\', 1)');
-		$stmt->bindParam(':iditem', $iditem, PDO::PARAM_STR);
+		$stmt->bindParam(':iditem', $iditem, PDO::PARAM_INT);
 		$stmt->bindParam(':name', $name, PDO::PARAM_STR);
 		$stmt->bindParam(':description', $description, PDO::PARAM_STR);
 		$stmt->execute();
@@ -258,6 +261,46 @@ function disableItem($iditem)
 		set currentstatus=:currentstatus
 		where idItem=' . $iditem . '');
 		$stmt->bindParam(':currentstatus', $disabled, PDO::PARAM_STR);
+		$stmt->execute();
+	}
+	catch (Exception $e)
+	{
+		echo $e->getMessage();
+	}
+}
+
+function unavailableItem($iditem)
+{
+    global $conn;
+	
+	$unavailable = 'unavailable';
+    
+	try
+	{
+		$stmt = $conn->prepare('update item
+		set currentstatus=:currentstatus
+		where idItem=' . $iditem . '');
+		$stmt->bindParam(':currentstatus', $unavailable, PDO::PARAM_STR);
+		$stmt->execute();
+	}
+	catch (Exception $e)
+	{
+		echo $e->getMessage();
+	}
+}
+
+function availableItem($iditem)
+{
+    global $conn;
+	
+	$available = 'available';
+    
+	try
+	{
+		$stmt = $conn->prepare('update item
+		set currentstatus=:currentstatus
+		where idItem=' . $iditem . '');
+		$stmt->bindParam(':currentstatus', $available, PDO::PARAM_STR);
 		$stmt->execute();
 	}
 	catch (Exception $e)

@@ -11,6 +11,12 @@
   
   $result = null;
   
+  $resultCount = null;
+  
+  $resultParameter = null;
+  
+  $resultTimeElapsed = null;
+  
   
 	try
 	{
@@ -35,13 +41,11 @@
 			$timeelapsed = $endtime - $starttime;
 			
 			
-			echo '<h4><small>' . count($result) . ' Result(s) for tags ' . $_GET['tags'] . ' in ' . number_format((float) $timeelapsed, 2, '.', '') . ' ms</small></h4>';
-
-
-			for($i = 0; $i < count($result); ++$i)
-			{
-				
-			}
+			$resultCount = count($result);
+			
+			$resultParameter = $_GET['tags'];
+			
+			$resultTimeElapsed = $timeelapsed;
 		}
 		else
 		{
@@ -65,13 +69,11 @@
 				$timeelapsed = $endtime - $starttime;
 				
 				
-				echo '<h4><small>' . count($result) . ' Result(s) for item number ' . $_GET['itemnumber'] . ' in ' . number_format((float) $timeelapsed, 2, '.', '') . ' ms</small></h4>';
-
-
-				for($i = 0; $i < count($result); ++$i)
-				{
-					
-				}
+				$resultCount = count($result);
+			
+				$resultParameter = $_GET['itemnumber'];
+			
+				$resultTimeElapsed = $timeelapsed;
 			}
 		}
 	}
@@ -81,6 +83,16 @@
 	}
 
 	$smarty->assign('results', $result);
+	
+	$smarty->assign('resultsCount', $resultCount);
+	
+	$smarty->assign('resultsParameter', $resultParameter);
+	
+	$resultTimeElapsed = number_format((float) $resultTimeElapsed, 2, '.', '');
+	
+	$smarty->assign('resultsTimeElapsed', $resultTimeElapsed);
+	
+	$smarty->assign('readerid', $_SESSION['idreader']);
   
   $smarty->display('search/search_results.tpl');
    

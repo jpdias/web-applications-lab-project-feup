@@ -86,9 +86,9 @@ CREATE TABLE requisition
 (
 idRequisition integer not null primary key,
 comment text not null,
-finaldate date not null,
-deliverydate date not null check(deliverydate <= finaldate),
-initialdate date not null check(initialdate <= finaldate),
+initialdate date not null,
+finaldate date not null check(finaldate >= initialdate),
+deliverydate date check(deliverydate <= finaldate),
 numberofrenewals integer not null check(numberofrenewals >= 0),
 currentstatus requisitionstatus not null,
 idReader integer REFERENCES reader(idReader) not null,
@@ -102,8 +102,8 @@ CREATE TYPE reservestatus AS enum ('closed', 'open');
 CREATE TABLE reserve
 (
 idReserve integer not null primary key,
-expiredate date not null,
 reservedate date not null check(reservedate <= expiredate),
+expiredate date not null,
 currentstatus reservestatus not null,
 idReader integer REFERENCES reader(idReader) not null,
 idItem integer REFERENCES item(idItem) not null

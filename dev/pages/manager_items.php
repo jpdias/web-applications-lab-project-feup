@@ -17,9 +17,9 @@
   
 		try
 		{
-			$activeitems = getAllItemsByOrderAscending();
+			$activeitems = getAllActiveItems();
 			
-			$newitems = getAllItemsByOrderDescending();
+			$newitems = getAllNewItems();
 		}
 		catch (Exception $e)
 		{
