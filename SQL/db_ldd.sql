@@ -11,11 +11,11 @@ DROP TABLE IF EXISTS reader CASCADE;
 DROP TABLE IF EXISTS admin CASCADE;
 DROP TABLE IF EXISTS inventory CASCADE;
 DROP TABLE IF EXISTS repaircompany CASCADE;
-DROP TABLE IF EXISTS city CASCADE;
+DROP TABLE IF EXISTS address CASCADE;
 
-CREATE TABLE city
+CREATE TABLE address
 (
-idCity integer not null primary key,
+idAddress integer not null primary key,
 name text not null
 );
 
@@ -23,7 +23,7 @@ CREATE TABLE repaircompany
 (
 idRepaircompany integer not null primary key,
 companyname text not null,
-idCity integer REFERENCES city(idCity) not null
+idAddress integer REFERENCES address(idAddress) not null
 );
 
 CREATE TABLE inventory
@@ -130,8 +130,8 @@ idTag integer REFERENCES tag(idTag) not null
 CREATE TABLE repair
 (
 idRepair integer not null primary key,
-finaldate date not null,
-initialdate date not null check(initialdate <= finaldate),
+initialdate date not null,
+finaldate date not null check(finaldate >= initialdate),
 reason text not null,
 idRepaircompany integer REFERENCES repaircompany(idRepaircompany) not null,
 idItem integer REFERENCES item(idItem) not null

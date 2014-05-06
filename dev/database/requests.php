@@ -34,8 +34,8 @@ function openRequest($idrequisition, $comment, $initialdate, $finaldate, $idread
 		$stmt->bindParam(':comment', $comment, PDO::PARAM_STR);
 		$stmt->bindParam(':initialdate', $initialdate, PDO::PARAM_STR);
 		$stmt->bindParam(':finaldate', $finaldate, PDO::PARAM_STR);
-		$stmt->bindParam(':idreader', $idreader, PDO::PARAM_STR);
-		$stmt->bindParam(':iditem', $iditem, PDO::PARAM_STR);
+		$stmt->bindParam(':idreader', $idreader, PDO::PARAM_INT);
+		$stmt->bindParam(':iditem', $iditem, PDO::PARAM_INT);
 		$stmt->execute();
 	}
 	catch (Exception $e)

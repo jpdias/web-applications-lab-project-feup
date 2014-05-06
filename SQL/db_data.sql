@@ -1,6 +1,6 @@
-insert into city values (1, 'Porto');
-insert into city values (2, 'Aveiro');
-insert into city values (3, 'Coimbra');
+insert into address values (1, 'Porto');
+insert into address values (2, 'Aveiro');
+insert into address values (3, 'Coimbra');
 
 insert into repaircompany values (1, 'Reparações & Reparações, Ltd.', 1);
 insert into repaircompany values (2, 'Clínica dos Equipamentos, Ltd.', 2);
@@ -45,4 +45,4 @@ insert into itemtag values (2, 1);
 insert into itemtag values (2, 2);
 insert into itemtag values (2, 3);
 
-insert into repair values (1, '2013-01-04', '2013-01-01', 'sobreaquecimento', 1, 1);
+insert into repair values (1, '2013-01-01', '2013-01-04', 'sobreaquecimento', 1, 1);

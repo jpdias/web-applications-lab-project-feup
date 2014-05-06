@@ -12,12 +12,16 @@
 	  
 	  
 	  $items = null;
+	  
+	  $repairCompanies = null;
   
 		try
 		{
 			if (isset($_GET['itemid']) && $_GET['itemid'] != '')
 			{
 				$items = getItemById($_GET['itemid'], $_GET['onlyavailableitems']);
+				
+				$repairCompanies = getAllRepairCompanies();
 			}
 		}
 		catch (Exception $e)
@@ -26,6 +30,8 @@
 		}
 		
 		$smarty->assign('items', $items);
+		
+		$smarty->assign('repairCompanies', $repairCompanies);
 	  
 	  
 	  $smarty->display('manager/item.tpl');

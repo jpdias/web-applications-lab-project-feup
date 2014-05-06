@@ -1,6 +1,3 @@
-<link type="text/css" rel="stylesheet" href="jquery.dropdown.css" />
-<script type="text/javascript" src="jquery.dropdown.js"></script>
-
 {foreach $items as $item}
 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
   <div class="container">
@@ -38,11 +35,7 @@
 						{if $item.currentstatus == 'available'}
                           <span class="label label-success">
 						{else}
-						{if $item.currentstatus == 'repair'}
-							<span class="label label-warning">
-						{else}
 							<span class="label label-danger">
-						{/if}
 						{/if}
                             {$item.currentstatus}
                           </span>
@@ -53,15 +46,6 @@
                 </div>
               </div>
             </div>
-			{if $item.currentstatus == 'repair'}
-			<div class="col-md-10">
-              <h2>
-                <button class="btn btn-success btn-md" data-toggle="modal" data-target="#fromRepairItemModal">
-                  Back from repair
-                </button>
-              </h2>
-            </div>
-			{else}
 			{if $item.currentstatus != 'withdrawn'}
             <div class="col-md-10">
               <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#editItemDetailModal">
@@ -70,8 +54,8 @@
             </div>
             <div class="col-md-10">
               <h2>
-                <button class="btn btn-warning btn-md" data-toggle="modal" data-target="#toRepairItemModal">
-                  Send to repair
+                <button class="btn btn-warning btn-md" data-toggle="modal" data-target="#repairItemModal">
+                  Repair Item
                 </button>
               </h2>
             </div>
@@ -82,7 +66,6 @@
                 </button>
               </h2>
             </div>
-			{/if}
 			{/if}
           </div>
         </div>
@@ -97,7 +80,7 @@
               &times;
             </button>
             <h3 class="modal-title" id="editItemDetailModalLabel">
-              Send item to repair
+              Edit item details
             </h3>
           </div>
           <form action="../actions/item_edit.php" method="post">
@@ -177,101 +160,6 @@
           </div>
         </div>
       </div> 
-    </div>
-	
-	<div class="modal fade" id="toRepairItemModal" tabindex="-1" role="dialog" aria-labelledby="toRepairItemModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-              &times;
-            </button>
-            <h4 class="modal-title" id="toRepairItemModalLabel">
-              Disable item
-            </h4>
-          </div>
-          <form action="../actions/item_to_repair.php" method="post">
-            <input type="hidden" name="itemid" value="{$item.iditem}">
-			<input type="hidden" id="repaircompanyidinput" name="repaircompanyid" value="1">
-            <div class="row">
-              <div class="col-md-12">
-                <br>
-				
-				<div class="col-md-12">
-					<div class="btn-group">
-						<button data-toggle="dropdown" class="btn btn-primary dropdown-toggle">Select the repair company: <span class="caret"></span></button>
-						<ul class="dropdown-menu">
-						{foreach $repairCompanies as $repairCompany}
-							<li><a onclick="document.getElementById('repaircompanyidinput').value = {$repairCompany.idrepaircompany}">{$repairCompany.companyname}</a></li>
-						{/foreach}
-						</ul>
-					</div>
-					<br>
-					<br>
-				</div>
-				
-				<div class="col-md-12">
-                  <div class="input-group">
-                    <span class="input-group-addon">
-                      Reason
-                    </span>
-                    <input type="text" class="form-control" name="reason" placeholder="Reason">
-                  </div>
-                  <br>
-                </div>
-				
-              </div>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-default" data-dismiss="modal">
-                Close
-              </button>
-              <button type="submit" class="btn btn-success">
-                Send to repair
-              </button>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-	
-	<div class="modal fade" id="fromRepairItemModal" tabindex="-1" role="dialog" aria-labelledby="fromRepairItemModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-              &times;
-            </button>
-            <h4 class="modal-title" id="fromRepairItemModalLabel">
-              Repaired item
-            </h4>
-          </div>
-          <form action="../actions/item_from_repair.php" method="post">
-            <input type="hidden" name="itemid" value="{$item.iditem}">
-            <div class="row">
-              <div class="col-md-12">
-                <br>
-                
-                <div class="col-md-12">
-                  <div class="input-group">
-                    Is this item repaired?
-                  </div>
-                  
-                  <br>
-                </div>
-              </div>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-default" data-dismiss="modal">
-                No
-              </button>
-              <button type="submit" class="btn btn-success">
-                Yes
-              </button>
-            </form>
-          </div>
-        </div>
-      </div>
     </div>
 	
 	<div class="modal fade" id="disableItemModal" tabindex="-1" role="dialog" aria-labelledby="disableItemModalLabel" aria-hidden="true">
