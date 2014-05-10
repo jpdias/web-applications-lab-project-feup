@@ -1,6 +1,8 @@
 <!-- Custom styles for this template -->
 <link href="../css/bootstrap-responsive.css" rel="stylesheet">
 
+<script src="../javascript/jPages.js"></script>
+
 <div id="content">
   <div id="container" class="container">
     <div class="row">
@@ -20,52 +22,60 @@
 	  {$resultsCount} result(s) for {$resultsParameter} in {$resultsTimeElapsed} ms
       
       <br>
+	  <br>
       <div class="span9" id="results-main">
         
-        <div id="results" class="results-on">
-          
-          {foreach $results as $result}
-          
-          <section class="result-part">
-            <img id="result-thumb" class="pull-left" src="{$result.image}">
-            <h3>
-              <a href="#" class="view-detail">
-                
-                {$result.name}
-                
-              </a>
-            </h3>
-            <p class="pull-left">
-              
-              {$result.description}
-              
-            </p>
-            <p class="pull-right">
-				{if $result.currentstatus == 'available'}
-					Availability: {$result.currentstatus}
-					<br>
-					<br>
-					<button class="btn btn-success" data-toggle="modal" data-target="#requestItemModal" onclick="document.getElementById('itemidinput').value = {$result.iditem}">
-						<i class="glyphicon glyphicon-tag">
-						</i>
-						Request
-					</button>
-				{else}
-					Availability: {$result.currentstatus}
-					<br>
-					<br>
-					<button class="btn btn-primary" data-toggle="modal" data-target="#reserverModal">
-						<i class="glyphicon glyphicon-tag">
-						</i>
-						Reserve 
-					</button>
-				{/if}
-            </p>
-          </section>
-          
-          {/foreach}
-        
-		</div>
+        <ul id="itemContainer">
+			
+			{foreach $results as $result}
+			  
+			  <li>
+			  
+			  <section class="result-part">
+				<img id="result-thumb" class="pull-left" src="{$result.image}">
+				<h3>
+				  <a href="#" class="view-detail">
+					
+					{$result.name}
+					
+				  </a>
+				</h3>
+				<p class="pull-left">
+				  
+				  {$result.description}
+				  
+				</p>
+				<p class="pull-right">
+					{if $result.currentstatus == 'available'}
+						Availability: {$result.currentstatus}
+						<br>
+						<br>
+						<button class="btn btn-success" data-toggle="modal" data-target="#requestItemModal" onclick="document.getElementById('itemidinput').value = {$result.iditem}">
+							<i class="glyphicon glyphicon-tag">
+							</i>
+							Request
+						</button>
+					{else}
+						Availability: {$result.currentstatus}
+						<br>
+						<br>
+						<button class="btn btn-primary" data-toggle="modal" data-target="#reserverModal">
+							<i class="glyphicon glyphicon-tag">
+							</i>
+							Reserve 
+						</button>
+					{/if}
+				</p>
+			  </section>
+			  
+			  </li>
+			  
+			  {/foreach}
+			  
+		</ul>
+		
+		<div class="holder"></div>
+		
       </div>
     </div>
 	
@@ -122,3 +132,13 @@
 	
   </div>
 </div>
+
+<script>
+$(document).ready(function () {
+ 
+$("div.holder").jPages({
+containerID: "itemContainer",
+perPage: 5
+});
+});
+</script>
