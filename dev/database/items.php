@@ -111,7 +111,7 @@ function getAllItemsByTags($tags, $onlyavailableitems)
 			}
 			else
 			{
-				$whereStmt = $whereStmt . ' or name like \'%' . $tag . '%\'';
+				$whereStmt = $whereStmt . ' and name like \'%' . $tag . '%\'';
 			}
 			
 			$tag = strtok(",");
