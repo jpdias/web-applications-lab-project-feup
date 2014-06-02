@@ -51,6 +51,20 @@ try
 			
 			
 			$_SESSION['success_messages'][] = 'Utilizador registado com sucesso!';
+			
+			
+			$from = "info@gestorax.com";
+			
+			$subject = "Registration confirmation";
+			
+			$message = "Hello!";
+			
+			$message = wordwrap($message, 70);
+			
+			mail("jpdias@outlook.com", $subject, $message, "From: $from\n");
+		}
+}
+?>
 		}
 		
 		
