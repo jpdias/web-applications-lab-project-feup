@@ -7,7 +7,7 @@ insert into repaircompany values (2, 'Clínica dos Equipamentos, Ltd.', 2);
 
 insert into inventory values (1, 'Inventário Principal');
 
-insert into admin values (1, 'admin', 'admin');
+insert into admin values (1, 'admin', 'd033e22ae348aeb5660fc2140aec35850c4da997');
 
 insert into reader values (1, 'reader1', 'd4313748fd463f49cb630922c5533af29d2f4fe0', 'rua do reader 1', '1993-01-01', 'reader1@email.com', 'reader', '1', 'active');
 insert into reader values (2, 'reader2', '9d272404caa43207c4787967c230f3cb867b2e2f', 'rua do reader 2', '1993-02-02', 'reader2@email.com', 'reader', '2', 'active');
