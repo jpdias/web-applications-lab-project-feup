@@ -27,7 +27,7 @@
   </br>
   <input name="address" type="text" class="form-control" placeholder="Address" required>
   <br>
-  <input name="birthdate" type="date" class="form-control" placeholder="Birthdate" required>
+  <input name="birthdate" type="date" class="form-control" placeholder="Birthdate (YYYY-MM-DD)" {literal} pattern="\d{4}-\d{1,2}-\d{1,2}" {/literal} required>
   <br>
   <input name="email" type="email" class="form-control" placeholder="Email address" required>
   <br>

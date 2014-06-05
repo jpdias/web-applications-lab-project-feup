@@ -1,11 +1,11 @@
-insert into address values (1, 'Porto');
+﻿insert into address values (1, 'Porto');
 insert into address values (2, 'Aveiro');
 insert into address values (3, 'Coimbra');
 
 insert into repaircompany values (1, 'Reparações & Reparações, Ltd.', 1);
 insert into repaircompany values (2, 'Clínica dos Equipamentos, Ltd.', 2);
 
-insert into inventory values (1, 'inventório principal');
+insert into inventory values (1, 'Inventário Principal');
 
 insert into admin values (1, 'admin', 'admin');
 
@@ -17,17 +17,12 @@ insert into manager values (1, 1, 1);
 
 insert into item values (1, 'projetor benq', '../resources/benqprojector2013.jpg', 'projetor benq modelo 2013', '../resources/benqprojector2013qrcode.jpg', 'available', 1);
 insert into item values (2, 'projetor sony', '../resources/sonyprojector2014.jpg', 'projetor sony modelo 2014', '../resources/sonyprojector2014qrcode.jpg', 'available', 1);
-insert into item values (3, 'projetor sony', '../resources/sonyprojector2013.jpg', 'projetor sony modelo 2013', '../resources/sonyprojector2013qrcode.jpg', 'unavailable', 1);
-insert into item values (4, 'projetor sony', '../resources/sonyprojector2013.jpg', 'projetor sony modelo 2013', '../resources/sonyprojector2013qrcode.jpg', 'unavailable', 1);
-insert into item values (5, 'projetor sony', '../resources/sonyprojector2013.jpg', 'projetor sony modelo 2013', '../resources/sonyprojector2013qrcode.jpg', 'unavailable', 1);
-insert into item values (6, 'projetor sony', '../resources/sonyprojector2013.jpg', 'projetor sony modelo 2013', '../resources/sonyprojector2013qrcode.jpg', 'unavailable', 1);
+insert into item values (3, 'projetor sony', '../resources/sonyprojector2013.jpg', 'projetor sony modelo 2013', '../resources/sonyprojector2013qrcode.jpg', 'available', 1);
+insert into item values (4, 'projetor sony', '../resources/sonyprojector2013.jpg', 'projetor sony modelo 2013', '../resources/sonyprojector2013qrcode.jpg', 'available', 1);
+insert into item values (5, 'projetor sony', '../resources/sonyprojector2013.jpg', 'projetor sony modelo 2013', '../resources/sonyprojector2013qrcode.jpg', 'available', 1);
+insert into item values (6, 'projetor sony', '../resources/sonyprojector2013.jpg', 'projetor sony modelo 2013', '../resources/sonyprojector2013qrcode.jpg', 'available', 1);
 insert into item values (7, 'projetor sony', '../resources/sonyprojector2013.jpg', 'projetor sony modelo 2013', '../resources/sonyprojector2013qrcode.jpg', 'unavailable', 1);
 insert into item values (8, 'projetor sony', '../resources/sonyprojector2013.jpg', 'projetor sony modelo 2013', '../resources/sonyprojector2013qrcode.jpg', 'unavailable', 1);
-insert into item values (9, 'projetor sony', '../resources/sonyprojector2013.jpg', 'projetor sony modelo 2013', '../resources/sonyprojector2013qrcode.jpg', 'unavailable', 1);
-insert into item values (10, 'projetor sony', '../resources/sonyprojector2013.jpg', 'projetor sony modelo 2013', '../resources/sonyprojector2013qrcode.jpg', 'unavailable', 1);
-insert into item values (11, 'projetor sony', '../resources/sonyprojector2013.jpg', 'projetor sony modelo 2013', '../resources/sonyprojector2013qrcode.jpg', 'unavailable', 1);
-insert into item values (12, 'projetor sony', '../resources/sonyprojector2013.jpg', 'projetor sony modelo 2013', '../resources/sonyprojector2013qrcode.jpg', 'unavailable', 1);
-insert into item values (13, 'projetor sony', '../resources/sonyprojector2013.jpg', 'projetor sony modelo 2013', '../resources/sonyprojector2013qrcode.jpg', 'unavailable', 1);
 
 insert into requisition values (1, ' ', '2014-01-01', '2014-01-08', '2014-01-04', 1, 'closed', 1, 1);
 insert into requisition values (2, ' ', '2014-02-01', '2014-02-08', '2014-02-04', 1, 'closed', 2, 2);

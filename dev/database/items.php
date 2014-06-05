@@ -45,7 +45,52 @@ function getAllActiveItems()
 		echo $e->getMessage();
 	}
 }
-
+function getAllRepairItems()
+{
+    global $conn;
+    
+	try
+	{
+		$stmt = $conn->prepare('
+		select idItem, name, image, description, qrcode, currentstatus
+		from item
+		where (currentstatus=\'repair\')
+		order by idItem asc');
+		$stmt->execute();
+		$stmt->setFetchMode(PDO::FETCH_ASSOC);
+		$result = $stmt->fetchAll();
+		
+		
+		return $result;
+	}
+	catch (Exception $e)
+	{
+		echo $e->getMessage();
+	}
+}
+function getAllDisabledItems()
+{
+    global $conn;
+    
+	try
+	{
+		$stmt = $conn->prepare('
+		select idItem, name, image, description, qrcode, currentstatus
+		from item
+		where (currentstatus=\'withdrawn\')
+		order by idItem asc');
+		$stmt->execute();
+		$stmt->setFetchMode(PDO::FETCH_ASSOC);
+		$result = $stmt->fetchAll();
+		
+		
+		return $result;
+	}
+	catch (Exception $e)
+	{
+		echo $e->getMessage();
+	}
+}
 function getAllNewItems()
 {
     global $conn;
@@ -294,6 +339,26 @@ function availableItem($iditem)
     global $conn;
 	
 	$available = 'available';
+    
+	try
+	{
+		$stmt = $conn->prepare('update item
+		set currentstatus=:currentstatus
+		where idItem=' . $iditem . '');
+		$stmt->bindParam(':currentstatus', $available, PDO::PARAM_STR);
+		$stmt->execute();
+	}
+	catch (Exception $e)
+	{
+		echo $e->getMessage();
+	}
+}
+
+function reserveItem($iditem)
+{
+    global $conn;
+	
+	$available = 'reserved';
     
 	try
 	{

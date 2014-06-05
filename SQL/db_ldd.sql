@@ -65,7 +65,7 @@ idReader integer REFERENCES reader(idReader) not null
 
 DROP TYPE IF EXISTS itemstatus;
 
-CREATE TYPE itemstatus AS enum ('available', 'repair', 'withdrawn', 'unavailable');
+CREATE TYPE itemstatus AS enum ('available', 'repair', 'withdrawn', 'unavailable', 'reserved');
 
 CREATE TABLE item
 (

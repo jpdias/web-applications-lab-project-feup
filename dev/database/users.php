@@ -139,6 +139,30 @@ function getAllUserRequests($idreader)
 	}
 }
 
+function getAllUserReserves($idreader)
+{
+    global $conn;
+    
+	try
+	{
+		$stmt = $conn->prepare('
+		select reader.idReader, reader.username, reserve.idReserve, reserve.reservedate, reserve.expiredate, reserve.currentstatus, reserve.idItem, item.name, item.currentstatus as itemcurrentstatus
+		from reader, reserve, item
+		where reader.idReader=' . $idreader . ' and ' . 'reserve.idReader=' . $idreader . ' and ' . 'item.idItem=' . 'reserve.idItem' . ' ' .
+		'order by reserve.idReserve desc');
+		$stmt->execute();
+		$stmt->setFetchMode(PDO::FETCH_ASSOC);
+		$result = $stmt->fetchAll();
+		
+		
+		return $result;
+	}
+	catch (Exception $e)
+	{
+		echo $e->getMessage();
+	}
+}
+
 function getAllManagers()
 {
     global $conn;
@@ -196,6 +220,24 @@ function editUserExceptPassword($idreader, $address, $firstname, $lastname)
 		$stmt->bindParam(':address', $address, PDO::PARAM_STR);
 		$stmt->bindParam(':firstname', $firstname, PDO::PARAM_STR);
 		$stmt->bindParam(':lastname', $lastname, PDO::PARAM_STR);
+		$stmt->execute();
+	}
+	catch (Exception $e)
+	{
+		echo $e->getMessage();
+	}
+}
+
+function editUserPassword($idreader, $password)
+{
+    global $conn;
+    
+	try
+	{
+		$stmt = $conn->prepare('update reader
+		set password=:password
+		where idReader=' . $idreader . '');
+		$stmt->bindParam(':password', sha1($password), PDO::PARAM_STR);
 		$stmt->execute();
 	}
 	catch (Exception $e)
@@ -263,6 +305,46 @@ function changeUserPermissions($idreader, $permissions)
 		{
 			echo $e->getMessage();
 		}
+	}
+}
+
+function getAllAdmins()
+{
+    global $conn;
+    
+	try
+	{
+		$stmt = $conn->prepare('
+		select idAdmin, username, password
+		from admin');
+		$stmt->execute();
+		$stmt->setFetchMode(PDO::FETCH_ASSOC);
+		$result = $stmt->fetchAll();
+		
+		
+		return $result;
+	}
+	catch (Exception $e)
+	{
+		echo $e->getMessage();
+	}
+}
+
+function editAdminPassword($idadmin, $password)
+{
+    global $conn;
+    
+	try
+	{
+		$stmt = $conn->prepare('update admin
+		set password=:password
+		where idAdmin=' . $idadmin . '');
+		$stmt->bindParam(':password', sha1($password), PDO::PARAM_STR);
+		$stmt->execute();
+	}
+	catch (Exception $e)
+	{
+		echo $e->getMessage();
 	}
 }
 ?>

@@ -65,10 +65,15 @@
   </br>
   <p>
     <h4>
-      Need help?
+	Recover passord:
+  </h4>
+  <a href="../pages/recover_password.php">
+	Recover Password
+  </a>
+  <h4>
+	Need help?
   </h4>
   <a href="mailto:help@gestorax.com">
-    
     <i class="glyphicon glyphicon-envelope">
     </i>
     Send us an email

@@ -83,7 +83,7 @@
             </h3>
           </div>
           <form action="../actions/user_edit.php" method="post">
-            <input type="hidden" name="readerid" value="{$result.idreader}">
+            <input type="hidden" name="readerid" value="{$user.idreader}">
             <div class="row">
               <div class="col-md-12">
                 <br>
@@ -104,7 +104,7 @@
                     <span class="input-group-addon">
                       Last Name
                     </span>
-                    <input type="text" class="form-control" name="lastname" placeholder="Last Name" value="{$result.lastname}">
+                    <input type="text" class="form-control" name="lastname" placeholder="Last Name" value="{$user.lastname}">
                   </div>
                   <br>
                   

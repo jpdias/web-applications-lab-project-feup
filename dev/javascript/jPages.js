@@ -156,7 +156,7 @@
             break;
         }
 
-        navhtml += "</a>";
+        navhtml += "  </a>";
         if (i === this.options.startRange || i === this._numPages - this.options.endRange)
           navhtml += "<span>...</span>";
       }
@@ -167,7 +167,7 @@
     writeBtn : function(which) {
 
       return this.options[which] !== false && !$(this["_" + which]).length ?
-      "<a class='jp-" + which + "'>" + this.options[which] + "</a>" : "";
+      "<a class='jp-" + which + "'>" + this.options[which] + "  </a>" : "";
 
     },
 

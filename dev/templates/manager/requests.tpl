@@ -13,6 +13,9 @@
             Item
           </th>
 		  <th>
+            User
+          </th>
+		  <th>
             Comment
           </th>
           <th>
@@ -35,8 +38,11 @@
           <td>
             {$request.idrequisition}
           </td>
-          <td>
+		  <td>
             {$request.name}
+          </td>
+          <td>
+            {$request.username}
           </td>
 		  <td>
             {$request.comment}
@@ -79,6 +85,9 @@
           <th>
             Item
           </th>
+		  <th>
+            User
+          </th>
           <th>
             Reserve date
           </th>
@@ -98,6 +107,9 @@
           </td>
           <td>
             {$reserve.name}
+          </td>
+		  <td>
+            {$request.username}
           </td>
 		  <td>
             {$reserve.reservedate}

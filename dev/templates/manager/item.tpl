@@ -1,6 +1,3 @@
-<link type="text/css" rel="stylesheet" href="jquery.dropdown.css" />
-<script type="text/javascript" src="jquery.dropdown.js"></script>
-
 {foreach $items as $item}
 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
   <div class="container">
@@ -36,12 +33,16 @@
                         Status: 
                         <label>
 						{if $item.currentstatus == 'available'}
-                          <span class="label label-success">
+                          <span class="label label-success">  
+						{else}
+						{if $item.currentstatus == 'reserved'}
+							<span class="label label-primary">
 						{else}
 						{if $item.currentstatus == 'repair'}
 							<span class="label label-warning">
 						{else}
 							<span class="label label-danger">
+						{/if}
 						{/if}
 						{/if}
                             {$item.currentstatus}
@@ -50,9 +51,6 @@
                       </div>
                     </div>
                   </div>
-                </div>
-              </div>
-            </div>
 			{if $item.currentstatus == 'repair'}
 			<div class="col-md-10">
               <h2>
@@ -63,25 +61,36 @@
             </div>
 			{else}
 			{if $item.currentstatus != 'withdrawn'}
-            <div class="col-md-10">
-              <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#editItemDetailModal">
-                Edit Item details
-              </button>
-            </div>
-            <div class="col-md-10">
-              <h2>
-                <button class="btn btn-warning btn-md" data-toggle="modal" data-target="#toRepairItemModal">
-                  Send to repair
-                </button>
-              </h2>
-            </div>
-			<div class="col-md-10">
-              <h2>
-                <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#disableItemModal">
-                  Disable Item
-                </button>
-              </h2>
-            </div>
+			
+				<div class="col-md-8">
+				<br><br>
+				  <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#editItemDetailModal">
+					Edit item details
+				  </button>
+		
+				<br>
+				  <h2>
+					<button class="btn btn-warning btn-lg" data-toggle="modal" data-target="#toRepairItemModal">
+					  Send to repair
+					</button>
+				  </h2>
+			
+				
+				  <h2>
+					<button class="btn btn-danger btn-lg" data-toggle="modal" data-target="#disableItemModal">
+					  Disable item
+					</button>
+				  </h2>
+				</div>
+				<div class="col-md-4">
+				<h3>Item QR Code:</h3>
+				<script>
+					var url = 'http://gnomo.fe.up.pt/~lbaw1342/dev/pages/item.php?itemid={$item.iditem}';
+					var request = "https://chart.googleapis.com/chart?chs=200x200&cht=qr&chl="+encodeURIComponent(url);
+					document.write("<img src="+request+" />");
+				</script>
+				</div>
+			
 			{/if}
 			{/if}
           </div>
@@ -97,7 +106,7 @@
               &times;
             </button>
             <h3 class="modal-title" id="editItemDetailModalLabel">
-              Send item to repair
+              Edit item
             </h3>
           </div>
           <form action="../actions/item_edit.php" method="post">
@@ -187,7 +196,7 @@
               &times;
             </button>
             <h4 class="modal-title" id="toRepairItemModalLabel">
-              Disable item
+              Send item to repair
             </h4>
           </div>
           <form action="../actions/item_to_repair.php" method="post">

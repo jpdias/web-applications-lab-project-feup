@@ -8,7 +8,7 @@
 	{
 	  $smarty->display('common/header.tpl');
 	  
-	  $smarty->display('manager/sidebar_overview.tpl');
+	  $smarty->display('manager/sidebar_requests.tpl');
 	  
 	  
 	  $requests = null;

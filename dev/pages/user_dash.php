@@ -16,6 +16,8 @@
 		try
 		{
 			$userRequests = getAllUserRequests($_SESSION['idreader']);
+			
+			$userReserves = getAllUserReserves($_SESSION['idreader']);
 		}
 		catch (Exception $e)
 		{
@@ -23,6 +25,10 @@
 		}
 		
 		$smarty->assign('userRequests', $userRequests);
+		
+		$smarty->assign('userReserves', $userReserves);
+		
+		$smarty->assign('readerid', $_SESSION['idreader']);
 	  
 	  
 	  $smarty->display('user/dash.tpl');

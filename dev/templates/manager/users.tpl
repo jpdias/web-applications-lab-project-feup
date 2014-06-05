@@ -8,7 +8,7 @@
     <form>
       <div class="input-group">
         <div class="input-group-btn">
-          
+          <script src="../javascript/dropdown.js"></script>
           <a class="btn btn-default dropdown-toggle btn-select" data-toggle="dropdown" href="#">
             Everything 
             <span class="caret">

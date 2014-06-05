@@ -78,9 +78,9 @@
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
               &times;
             </button>
-            <h4 class="modal-title" id="editUserModalLabel">
+            <h3 class="modal-title" id="editUserModalLabel">
               Edit profile details
-            </h4>
+            </h3>
           </div>
           <form action="../actions/user_edit.php" method="post">
             <input type="hidden" name="readerid" value="{$user.idreader}">

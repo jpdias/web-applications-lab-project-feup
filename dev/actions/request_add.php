@@ -7,6 +7,8 @@ try
 
 	include_once($BASE_DIR . 'database/requests.php');
 	
+	include_once($BASE_DIR . 'database/users.php');
+	
 	
 	if($_POST['readerid'] != "")
 	{
@@ -27,6 +29,29 @@ try
 				
 					
 			$_SESSION['success_messages'][] = 'Request made successfully!';
+			
+			
+			$user = getUserById($_SESSION['idreader']);
+			
+			$userEmail = $user[0]['email'];
+			
+			
+			$item = getItemById($_POST['itemid']);
+				
+			$itemId = $_POST['itemid'];
+			
+			$itemName = $item[0]['name'];
+			
+			
+			$from = "no-reply@gestorax.com";
+			
+			$subject = "Request confirmation";
+			
+			$message = "Hello,\n\nThis is a confirmation e-mail informing you that you requested the following item:\nItem Id: $itemId\nItem Name: $itemName\n\nDelivery Date: $finaldate\n\nSincerely,\nGestorax Team";
+			
+			$message = wordwrap($message, 1000);
+			
+			mail($userEmail, $subject, $message, "From: $from\n");
 		}
 		else
 		{

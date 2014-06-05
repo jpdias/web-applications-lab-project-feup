@@ -8,7 +8,7 @@
     <form>
       <div class="input-group">
         <div class="input-group-btn">
-          
+          <script src="../javascript/dropdown.js"></script>
           <a class="btn btn-default dropdown-toggle btn-select" data-toggle="dropdown" href="#">
             Everything 
             <span class="caret">
@@ -127,7 +127,7 @@
               {$newitem.description}
             </td>
             <th>
-              <button class="btn btn-default btn-xs" type="submit" onclick="window.location.href='../pages/manager_item.php?itemid={$newitem.iditem}'">
+              <button class="btn btn-default btn-xs" type="submit" onclick="window.location.href='../pages/manager_item.php?id={$IDMANAGER}&itemid={$newitem.iditem}'">
                 <i class="glyphicon glyphicon-plus">
                 </i>
               </button>

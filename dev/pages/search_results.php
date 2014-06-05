@@ -6,8 +6,6 @@
   
   $smarty->display('common/header.tpl');
   
-  $smarty->display('common/menu_logged_out.tpl');
-  
   
   $result = null;
   
@@ -94,7 +92,8 @@
 	
 	$smarty->assign('readerid', $_SESSION['idreader']);
   
-  $smarty->display('search/search_results.tpl');
+ 
+ $smarty->display('search/search_results.tpl');
    
   $smarty->display('common/footer.tpl');
 ?>

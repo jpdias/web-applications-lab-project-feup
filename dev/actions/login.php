@@ -3,82 +3,121 @@ try
 {
 	include_once('../config/init.php');
 
+	include_once($BASE_DIR . 'database/items.php');
+	
 	include_once($BASE_DIR . 'database/users.php');
-
-
-	$email = $_POST['email'];
-
-	$password = $_POST['password'];
+	
+	include_once($BASE_DIR . 'database/requests.php');
 
 
 	$idreader = 0;
 
 	if (isset($_POST['email']))
 	{
-		$error = 1;
-
-		
-		$result = getAllUsers();
-		
-		
-		for($i = 0; $i < count($result); ++$i)
+		$allAdmins = getAllAdmins();
+	
+		if($_POST['email'] == 'admin' && sha1($_POST['password']) == $allAdmins[0]['password'])
 		{
-			if($_POST['email'] == $result[$i]['email'])
+			$_SESSION['admin'] = 'admin';
+			
+			
+			header('Location: ../pages/admin.php');
+		}
+		else
+		{
+			$error = 1;
+
+			
+			$result = getAllUsers();
+			
+			
+			for($i = 0; $i < count($result); ++$i)
 			{
-				if($result[$i]['currentstatus'] == 'active')
+				if($_POST['email'] == $result[$i]['email'])
 				{
-					if(sha1($_POST['password']) == $result[$i]['password'])
+					if($result[$i]['currentstatus'] == 'active')
 					{
-						$_SESSION['username'] = $result[$i]['username'];
-						
-						$_SESSION['idreader'] = $result[$i]['idreader'];
-						
-						
-						$managers = getAllManagers();
-						
-						
-						for($j = 0; $j < count($managers); ++$j)
+						if(sha1($_POST['password']) == $result[$i]['password'])
 						{
-							if($result[$i]['idreader'] == $managers[$j]['idreader'])
+							$_SESSION['username'] = $result[$i]['username'];
+							
+							$_SESSION['idreader'] = $result[$i]['idreader'];
+							
+							
+							$managers = getAllManagers();
+							
+							
+							for($j = 0; $j < count($managers); ++$j)
 							{
-								$_SESSION['idmanager'] = $managers[$j]['idmanager'];
-								
-								
-								break;
+								if($result[$i]['idreader'] == $managers[$j]['idreader'])
+								{
+									$_SESSION['idmanager'] = $managers[$j]['idmanager'];
+									
+									
+									break;
+								}
 							}
+							
+							
+							$_SESSION['success_messages'][] = 'Login successful!';
+							
+							
+							$error = 0;
 						}
-						
-						
-						$_SESSION['success_messages'][] = 'Login successful!';
-						
-						
-						$error = 0;
+						else
+							$error = 2;
 					}
 					else
-						$error = 2;
-				}
-				else
-				{
-					$error = 3;
+					{
+						$error = 3;
+					}
 				}
 			}
-		}
 
 
-		if($error != 0)
-		{
-			if($error == 1)
-				$_SESSION['error_messages'][] = 'Email not registered!';  
+			if($error != 0)
+			{
+				if($error == 1)
+					$_SESSION['error_messages'][] = 'Email not registered!';  
+					
+				if($error == 2)
+					$_SESSION['error_messages'][] = 'Wrong password!'; 
+					
+				if($error == 3)
+					$_SESSION['error_messages'][] = 'Account blocked or disabled!'; 
+			}
+			else
+			{
+				$allReserves = getAllReserves();
 				
-			if($error == 2)
-				$_SESSION['error_messages'][] = 'Wrong password!'; 
+				$todaydate = date('Y-m-d', time());
 				
-			if($error == 3)
-				$_SESSION['error_messages'][] = 'Account blocked or disabled!'; 
+				
+				$k = 0;
+				
+				while($k < count($allReserves))
+				{
+					$expiredate = $allReserves[$k]['expiredate'];
+					
+					$reserveid = $allReserves[$k]['idreserve'];
+					
+					$itemid = $allReserves[$k]['iditem'];
+					
+					
+					if($todaydate > $expiredate)
+					{
+						availableItem($itemid);
+						
+						closeReserve($reserveid);
+					}
+					
+					++$k;
+				}
+			}
+			
+			
+			header('Location: ../pages/main.php');
 		}
-		
-		
-		header('Location: ../pages/main.php');
 	}
 }
 catch (Exception $e)

@@ -21,9 +21,9 @@
       <form class="navbar-form navbar-right" role="form" method="post" action="../actions/logout.php">
         <div class="form-group">
 		{if $IDMANAGER == ""}
-		  <a type="submit" href="../pages/user_dash.php?id={$IDREADER}">Hello, {$USERNAME}!</a>
+		  <a type="submit" href="../pages/user_dash.php?id={$IDREADER}">{$USERNAME}'s Control Panel</a>
 		{else}
-		  <a type="submit" href="../pages/manager_dash.php?id={$IDMANAGER}">Hello, {$USERNAME}!</a>
+		  <a type="submit" href="../pages/manager_dash.php?id={$IDMANAGER}">{$USERNAME}'s Control Panel</a>
 		{/if}
         </div>
         <button type="submit" class="btn btn-danger">
