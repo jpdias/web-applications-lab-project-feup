@@ -1,3 +1,7 @@
+Admin:
+email: admin
+password: admin
+
 Manager:
 email: reader1@email.com
 password: reader1
