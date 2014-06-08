@@ -67,6 +67,24 @@ function closeRequest($idrequisition, $deliverydate)
 	}
 }
 
+function renewRequest($idrequisition, $finaldate)
+{
+    global $conn;
+    
+	try
+	{
+		$stmt = $conn->prepare('update requisition
+		set finaldate=:finaldate
+		where idRequisition=' . $idrequisition . '');
+		$stmt->bindParam(':finaldate', $finaldate, PDO::PARAM_STR);
+		$stmt->execute();
+	}
+	catch (Exception $e)
+	{
+		echo $e->getMessage();
+	}
+}
+
 function getRequestsById($iditem)
 {
     global $conn;

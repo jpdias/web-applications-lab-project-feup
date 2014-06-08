@@ -58,6 +58,9 @@
           <th>
             Status
           </th>
+		  <th>
+            
+          </th>
         </tr>
       </thead>
       <tbody>
@@ -84,6 +87,11 @@
           <td>
             {$userRequest.currentstatus}
           </td>
+		  <td>
+		  <button class="btn btn-success" data-toggle="modal" data-target="#renewRequestModal" onclick="document.getElementById('requestidinput1').value = {$userRequest.idrequisition};document.getElementById('itemidinput1').value = {$userRequest.iditem}">
+			Renew Request
+          </button>
+		  </td>
         </tr>
         {/foreach}
       </tbody>
@@ -154,6 +162,47 @@
       </tbody>
     </table>
   </div>
+  
+  <div class="modal fade" id="renewRequestModal" tabindex="-1" role="dialog" aria-labelledby="renewRequestModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+              &times;
+            </button>
+            <h3 class="modal-title" id="renewRequestModalLabel">
+              Renew Request
+            </h3>
+          </div>
+          <form action="../actions/request_renew.php" method="post">
+			<input type="hidden" id="requestidinput1" name="requestid" value="0">
+			<input type="hidden" id="itemidinput1" name="itemid" value="0">
+			<input type="hidden" id="readeridinput" name="readerid" value="{$readerid}">
+            <div class="row">
+              <div class="col-md-12">
+                <br>
+                
+                <div class="col-md-12">
+                  <div class="input-group">
+                    Are you sure you want to renew this request?
+                  </div>
+                  
+                  <br>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">
+                No
+              </button>
+              <button type="submit" class="btn btn-success">
+                Yes
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
   
   <div class="modal fade" id="requestItemModal" tabindex="-1" role="dialog" aria-labelledby="requestItemModalLabel" aria-hidden="true">
       <div class="modal-dialog">
