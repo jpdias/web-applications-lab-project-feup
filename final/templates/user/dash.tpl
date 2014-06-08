@@ -41,7 +41,10 @@
             #
           </th>
           <th>
-            Item
+            Item Number
+          </th>
+		  <th>
+            Item Title
           </th>
 		  <th>
             Comment
@@ -69,6 +72,9 @@
           <td>
             {$userRequest.idrequisition}
           </td>
+		   <td>
+            {$userRequest.iditem}
+          </td>
           <td>
             {$userRequest.name}
           </td>
@@ -88,7 +94,7 @@
             {$userRequest.currentstatus}
           </td>
 		  <td>
-		  <button class="btn btn-success" data-toggle="modal" data-target="#renewRequestModal" onclick="document.getElementById('requestidinput1').value = {$userRequest.idrequisition};document.getElementById('itemidinput1').value = {$userRequest.iditem}">
+		  <button class="btn btn-success btn-sm" data-toggle="modal" data-target="#renewRequestModal" onclick="document.getElementById('requestidinput1').value = {$userRequest.idrequisition};document.getElementById('itemidinput1').value = {$userRequest.iditem}">
 			Renew Request
           </button>
 		  </td>
@@ -110,7 +116,10 @@
             #
           </th>
           <th>
-            Item
+            Item Number
+          </th>
+		   <th>
+            Item Title
           </th>
           <th>
             Reserve date
@@ -131,6 +140,9 @@
         <tr>
           <td>
             {$userReserve.idreserve}
+          </td>
+		  <td>
+            {$userReserve.iditem}
           </td>
           <td>
             {$userReserve.name}

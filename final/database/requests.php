@@ -131,6 +131,29 @@ function getAllReserves()
 	}
 }
 
+function getAllOpenRequestsByItemId($iditem)
+{
+    global $conn;
+    
+	try
+	{
+		$stmt = $conn->prepare('
+		select requisition.idRequisition, requisition.comment, requisition.initialdate, requisition.finaldate, requisition.deliverydate, requisition.numberofrenewals, requisition.currentstatus, requisition.idReader, requisition.idItem
+		from requisition, item
+		where requisition.idItem=' . $iditem . ' ');
+		$stmt->execute();
+		$stmt->setFetchMode(PDO::FETCH_ASSOC);
+		$result = $stmt->fetchAll();
+		
+		
+		return $result;
+	}
+	catch (Exception $e)
+	{
+		echo $e->getMessage();
+	}
+}
+
 function getAllOpenReservesByItemId($iditem)
 {
     global $conn;

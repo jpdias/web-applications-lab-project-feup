@@ -3,6 +3,8 @@
   
   include_once($BASE_DIR . 'database/items.php');
   
+  include_once($BASE_DIR . 'database/requests.php');
+  
   
   $smarty->display('common/header.tpl');
 	  
@@ -15,6 +17,9 @@
 		{
 			$items = getItemById($_GET['itemid'], $_GET['onlyavailableitems']);
 			
+			$requests = getAllOpenRequestsByItemId($_GET['itemid']);
+			
+			echo(count($requests));
 		}
 	}
 	catch (Exception $e)
@@ -25,6 +30,10 @@
 	$smarty->assign('items', $items);
 	
 	$smarty->assign('readerid', $_SESSION['idreader']);
+	
+	$smarty->assign('managerid', $_SESSION['idmanager']);
+	
+	$smarty->assign('requestsopencount', count($requests));
   
   
   $smarty->display('main/item.tpl');

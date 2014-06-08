@@ -10,7 +10,10 @@
             #
           </th>
           <th>
-            Item
+            Item Number
+          </th>
+		  <th>
+            Item Title
           </th>
 		  <th>
             User
@@ -37,6 +40,9 @@
         <tr>
           <td>
             {$request.idrequisition}
+          </td>
+		  <td>
+            {$request.iditem}
           </td>
 		  <td>
             {$request.name}
@@ -83,7 +89,10 @@
             #
           </th>
           <th>
-            Item
+            Item Number
+          </th>
+		  <th>
+            Item Title
           </th>
 		  <th>
             User
@@ -104,6 +113,9 @@
         <tr>
           <td>
             {$reserve.idreserve}
+          </td>
+		  <td>
+            {$reserve.iditem}
           </td>
           <td>
             {$reserve.name}

@@ -63,8 +63,11 @@
             <th>
               #
             </th>
+			<th>
+              Item Number
+            </th>
             <th>
-              Title
+              Item Title
             </th>
             <th>
               Description

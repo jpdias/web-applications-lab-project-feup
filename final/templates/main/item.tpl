@@ -5,7 +5,8 @@
     <div class="col-md-12">
       <br>
       <h1>
-        {$item.name}
+        #{$item.iditem} - {$item.name}
+      </h3>
       </h1>
       <br>
       <hr>
@@ -15,6 +16,7 @@
       <img src="{$item.image}" style="width:80%"/>
     </div>
     <div class="col-md-6">
+	  <br>
       <h2>
         Description:
       </h2>
@@ -26,11 +28,12 @@
         Current Status: {$item.currentstatus}
       </h3>
     </div>
+	<br>
+	<br>
     <div class="col-md-2" style="float:right;">
       <h3>
         I want it:
       </h3>
-      
       {if $item.currentstatus == 'available'}
       <button class="btn btn-success" data-toggle="modal" data-target="#requestItemModal" onclick="document.getElementById('requestitemidinput').value = {$item.iditem}">
         <i class="glyphicon glyphicon-tag">
@@ -44,16 +47,16 @@
         Reserve 
       </button>
       {/if}
-	  
 	  <br>
 	  <br>
-	  <h3>Item QR Code:</h3>
-	  <script>
-		 var url = 'http://gnomo.fe.up.pt/~lbaw1342/dev/pages/item.php?itemid={$item.iditem}';
-		 var request = "https://chart.googleapis.com/chart?chs=150x150&cht=qr&chl="+encodeURIComponent(url);
-		 document.write("<img src="+request+" />");
-	  </script>
-	  
+	  {if $managerid != "" && $requestsopencount != 0}
+	  <h3>
+        Options:
+      </h3>
+	  <button class="btn btn-primary" data-toggle="modal" data-target="#deliverItemModal" onclick="document.getElementById('requestidinput').value = {$request.idrequisition};document.getElementById('itemidinput').value = {$request.iditem}">
+		  Deliver Item
+      </button>
+	  {/if}
 	</div>
 	
 	<div class="modal fade" id="requestItemModal" tabindex="-1" role="dialog" aria-labelledby="requestItemModalLabel" aria-hidden="true">
