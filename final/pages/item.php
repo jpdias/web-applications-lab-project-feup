@@ -18,8 +18,6 @@
 			$items = getItemById($_GET['itemid'], $_GET['onlyavailableitems']);
 			
 			$requests = getAllOpenRequestsByItemId($_GET['itemid']);
-			
-			echo(count($requests));
 		}
 	}
 	catch (Exception $e)
@@ -32,6 +30,8 @@
 	$smarty->assign('readerid', $_SESSION['idreader']);
 	
 	$smarty->assign('managerid', $_SESSION['idmanager']);
+	
+	$smarty->assign('requests', $requests);
 	
 	$smarty->assign('requestsopencount', count($requests));
   

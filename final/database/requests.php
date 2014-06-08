@@ -140,7 +140,7 @@ function getAllOpenRequestsByItemId($iditem)
 		$stmt = $conn->prepare('
 		select requisition.idRequisition, requisition.comment, requisition.initialdate, requisition.finaldate, requisition.deliverydate, requisition.numberofrenewals, requisition.currentstatus, requisition.idReader, requisition.idItem
 		from requisition, item
-		where requisition.idItem=' . $iditem . ' ');
+		where requisition.idItem=' . $iditem . ' and requisition.deliverydate is null');
 		$stmt->execute();
 		$stmt->setFetchMode(PDO::FETCH_ASSOC);
 		$result = $stmt->fetchAll();

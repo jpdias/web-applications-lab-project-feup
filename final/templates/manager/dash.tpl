@@ -62,7 +62,7 @@
             Status
           </th>
 		  <th>
-            
+            Renew
           </th>
         </tr>
       </thead>
@@ -94,9 +94,11 @@
             {$userRequest.currentstatus}
           </td>
 		  <td>
+		  {if $userRequest.currentstatus == 'open'}
 		  <button class="btn btn-success btn-sm" data-toggle="modal" data-target="#renewRequestModal" onclick="document.getElementById('requestidinput1').value = {$userRequest.idrequisition};document.getElementById('itemidinput1').value = {$userRequest.iditem}">
-			Renew Request
+			Renew
           </button>
+		  {/if}
 		  </td>
         </tr>
         {/foreach}

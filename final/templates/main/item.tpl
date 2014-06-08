@@ -53,7 +53,7 @@
 	  <h3>
         Options:
       </h3>
-	  <button class="btn btn-primary" data-toggle="modal" data-target="#deliverItemModal" onclick="document.getElementById('requestidinput').value = {$request.idrequisition};document.getElementById('itemidinput').value = {$request.iditem}">
+	  <button class="btn btn-primary" data-toggle="modal" data-target="#deliverItemModal" onclick="document.getElementById('requestidinput').value = {$requests[0].idrequisition};document.getElementById('itemidinput').value = {$requests[0].iditem}">
 		  Deliver Item
       </button>
 	  {/if}
@@ -131,6 +131,46 @@
                 <div class="col-md-12">
                   <div class="input-group">
                     Are you sure you want to reserve this item?
+                  </div>
+                  
+                  <br>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">
+                No
+              </button>
+              <button type="submit" class="btn btn-success">
+                Yes
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+	
+	<div class="modal fade" id="deliverItemModal" tabindex="-1" role="dialog" aria-labelledby="deliverItemModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+              &times;
+            </button>
+            <h3 class="modal-title" id="deliverItemModalLabel">
+              Deliver Item
+            </h3>
+          </div>
+          <form action="../actions/request_deliver.php" method="post">
+			<input type="hidden" id="requestidinput" name="requestid" value="0">
+			<input type="hidden" id="itemidinput" name="itemid" value="0">
+            <div class="row">
+              <div class="col-md-12">
+                <br>
+                
+                <div class="col-md-12">
+                  <div class="input-group">
+                    Are you sure you want to deliver this item?
                   </div>
                   
                   <br>
