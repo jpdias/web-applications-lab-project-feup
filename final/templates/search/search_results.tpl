@@ -90,11 +90,13 @@
                   Availability: {$result.currentstatus}
                   <br>
                   <br>
+				  {if $result.currentstatus == 'unavailable'}
                   <button class="btn btn-primary" data-toggle="modal" data-target="#reserveItemModal" onclick="document.getElementById('reserveitemidinput').value = {$result.iditem}">
                     <i class="glyphicon glyphicon-tag">
                     </i>
                     Reserve 
                   </button>
+				  {/if}
                   {/if}
                   
 				</div>
