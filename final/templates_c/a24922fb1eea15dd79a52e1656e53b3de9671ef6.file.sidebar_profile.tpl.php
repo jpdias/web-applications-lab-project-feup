@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.15, created on 2014-06-07 19:02:02
+<?php /* Smarty version Smarty-3.1.15, created on 2014-06-08 15:57:19
          compiled from "/opt/lbaw/lbaw1342/public_html/final/templates/manager/sidebar_profile.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:1393944695392450e88dc85-27703204%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'a24922fb1eea15dd79a52e1656e53b3de9671ef6' => 
     array (
       0 => '/opt/lbaw/lbaw1342/public_html/final/templates/manager/sidebar_profile.tpl',
-      1 => 1402163569,
+      1 => 1402234217,
       2 => 'file',
     ),
   ),
@@ -72,11 +72,15 @@ $_valid = $_smarty_tpl->decodeProperties(array (
             Users
           </a>
         </li>
-      </ul>
-      <form class="body-form" role="search" method="get" action="../pages/manager_search.php">
-        <div class="input-group add-on">
-		  <input type="hidden" id="id" name="id" value="<?php echo $_smarty_tpl->tpl_vars['IDMANAGER']->value;?>
+		<li>
+          <a href="../pages/manager_alerts.php?id=<?php echo $_smarty_tpl->tpl_vars['IDMANAGER']->value;?>
 ">
+            Alerts
+          </a>
+        </li>
+      </ul>
+      <form class="body-form" role="search" method="get" action="../pages/search_results.php">
+        <div class="input-group add-on">
           <input name="tags" type="text" class="form-control" data-role="tagsinput" placeholder="Add tags" name="srch-term" id="srch-term">
           <div class="input-group-btn">
             <button class="btn btn-default" type="submit">

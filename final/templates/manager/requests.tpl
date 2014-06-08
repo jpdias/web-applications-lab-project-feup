@@ -2,7 +2,7 @@
   <h2 class="sub-header">
     Requests
   </h2>
-  <div class="table-responsive">
+  <div class="table-responsive" style="max-height:400px;overflow:auto">
     <table class="table table-striped">
       <thead>
         <tr>
@@ -75,7 +75,7 @@
   <h2 class="sub-header">
     Reservations
   </h2>
-  <div class="table-responsive">
+  <div class="table-responsive" style="max-height:400px;overflow:auto">
     <table class="table table-striped">
       <thead>
         <tr>

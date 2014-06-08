@@ -11,23 +11,38 @@
   <div class="row">
     <div class="col-sm-3 col-md-2 sidebar">
       <ul class="nav nav-sidebar">
-        <li class="active">
-          <a href="../pages/user_dash.php?id={$IDREADER}">
+        <li>
+          <a href="../pages/manager_dash.php?id={$IDMANAGER}">
             Overview
           </a>
         </li>
         <li>
-          <a  href="../pages/user_statistics.php?id={$IDREADER}">
+          <a href="../pages/manager_statistics.php?id={$IDMANAGER}">
             Statistics
           </a>
         </li>
         <li>
-          <a href="../pages/user_profile.php?id={$IDREADER}">
+          <a href="../pages/manager_profile.php?id={$IDMANAGER}">
             My profile
           </a>
         </li>
 		<li>
-          <a href="../pages/user_alerts.php?id={$IDREADER}">
+          <a href="../pages/manager_items.php?id={$IDMANAGER}">
+            Inventory
+          </a>
+        </li>
+		<li>
+          <a href="../pages/manager_requests.php?id={$IDMANAGER}">
+            Requests
+          </a>
+        </li>
+        <li >
+          <a href="../pages/manager_users.php?id={$IDMANAGER}">
+            Users
+          </a>
+        </li>
+		<li class="active">
+          <a href="../pages/manager_alerts.php?id={$IDMANAGER}">
             Alerts
           </a>
         </li>
@@ -47,4 +62,5 @@
   </div>
 </div>
 
-<script src="../javascript/docs.min.js"></script>
+<script src="../javascript/docs.min.js">
+</script>

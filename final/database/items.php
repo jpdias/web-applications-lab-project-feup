@@ -201,18 +201,12 @@ function getAllItemsByItemNumber($itemnumber, $onlyavailableitems)
 		$whereStmt = "";
 
 
-		$whereStmt = ' where (idItem = ' . $itemnumber . ')';
+		$whereStmt = ' where idItem = ' . $itemnumber . ' ';
 		
 		
 		if(isset($onlyavailableitems) && $onlyavailableitems == "yes")
 		{
 			$whereStmt = $whereStmt . ' and currentstatus = ' . '\'available\'';
-		}
-		
-		
-		if($whereStmt != "")
-		{
-			$whereStmt = $whereStmt . ')';
 		}
 		
 		

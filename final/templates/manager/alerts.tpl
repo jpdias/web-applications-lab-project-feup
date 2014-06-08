@@ -6,8 +6,8 @@
   <h2 class="sub-header">
     Pending deliveries
   </h2>
-  <div class="table-responsive">
-    <table class="table table-striped">
+  <div class="table-responsive" style="max-height:400px;overflow:auto">
+    <table class="table table-striped" id="all" >
       <thead>
         <tr>
           <th>
@@ -40,32 +40,35 @@
       <tbody>
 
         {foreach $requests as $userRequest}
-		      {if $userRequest.finaldate  <= $smarty.now}
+		 
+{if $userRequest.currentstatus != 'closed'}
 
         <tr>
-          <td>
+		<td id="idIt" style="display:none" >{$userRequest.iditem}</td>
+		<td id="idUs" style="display:none">{$userRequest.idreader}</td>
+          <td id="idrequisition">
             {$userRequest.idrequisition}
           </td>
-          <td>
+          <td id="name">
             {$userRequest.name}
           </td>
-		  <td>
+          <td id="comment">
             {$userRequest.comment}
           </td>
-          <td>
+          <td id="finaldate">
             {$userRequest.finaldate}
           </td>
-		  <td>
+          <td id="deliverydate">
             {$userRequest.deliverydate}
           </td>
-          <td>
+          <td id="username">
               {$userRequest.username}
               </td>
-          <td>
+          <td id="currentstatus">
             {$userRequest.currentstatus}
           </td>
-		   <td>
-            <button class="btn btn-warning" data-toggle="modal" data-target="#alert">Create Alert </button>
+          <td>
+            <button id="createbtn" class="btn btn-warning" data-toggle="modal" data-target="#alert" ">Create Alert </button>
           </td>
         </tr>
 	{/if}
@@ -78,7 +81,7 @@
   <h2 class="sub-header">
     Alerts
   </h2>
-  <div class="table-responsive">
+  <div class="table-responsive" style="max-height:400px;overflow:auto">
     <table class="table table-striped">
       <thead>
         <tr>
@@ -129,9 +132,15 @@
             </h3>
           </div>
           <form action="../actions/create_alert.php" method="post">
-			<input type="hidden" id="reserveidinput" name="reserveid" value="0">
-			<input type="hidden" id="itemidinput" name="itemid" value="0">
-			<input type="hidden" id="readeridinput" name="readerid" value="{$readerid}">
+			<input type="hidden" id="idreq" name="idreq" value="0">
+			<input type="hidden" id="varname" name="varname" value="0">
+			<input type="hidden" id="varcom" name="varcom" value="0">
+			<input type="hidden" id="vardelivery" name="vardelivery" value="0">
+			<input type="hidden" id="varfin" name="varfin" value="0">
+			<input type="hidden" id="varuser" name="varuser" value="0">
+			<input type="hidden" id="varcurr" name="varcurr" value="0">
+<input type="hidden" id="varIt" name="varIt" value="0">
+<input type="hidden" id="varUs" name="varUs" value="0">
             <div class="row">
               <div class="col-md-12">
                 <br>
@@ -165,3 +174,19 @@
     </div>
 
 </div>
+<script>
+/*function fillVars(){
+$("#varIt").val( $("#createbtn").parent('td').parent('tr').find('#idIt').text());
+$("#varUs").val($("#createbtn").parent('td').parent('tr').find('#idUs').text());
+console.log( $("#createbtn").parent('td').parent('tr').find('#idIt').text());
+console.log( $("#createbtn").parent('td').parent('tr').find('#idUs').text());
+};*/
+$('#all').on( 'click', '#createbtn', function( event ) {
+        var $tr = $(this).closest('tr');
+        $("#varIt").val($tr.find('#idIt').text());
+        $("#varUs").val($tr.find( '#idUs').text());
+console.log( $tr.find('#idIt').text());
+        // Submit your form here
+});
+
+</script>

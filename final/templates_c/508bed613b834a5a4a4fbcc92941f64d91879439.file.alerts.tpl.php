@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.15, created on 2014-06-07 01:22:36
+<?php /* Smarty version Smarty-3.1.15, created on 2014-06-07 23:25:09
          compiled from "/opt/lbaw/lbaw1342/public_html/final/templates/manager/alerts.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:57174188753924011cc5f06-71070826%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '508bed613b834a5a4a4fbcc92941f64d91879439' => 
     array (
       0 => '/opt/lbaw/lbaw1342/public_html/final/templates/manager/alerts.tpl',
-      1 => 1402100553,
+      1 => 1402179905,
       2 => 'file',
     ),
   ),
@@ -23,7 +23,6 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'userRequest' => 0,
     'alerts' => 0,
     'alert' => 0,
-    'readerid' => 0,
   ),
   'has_nocache_code' => false,
 ),false); /*/%%SmartyHeaderCode%%*/?>
@@ -35,8 +34,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   <h2 class="sub-header">
     Pending deliveries
   </h2>
-  <div class="table-responsive">
-    <table class="table table-striped">
+  <div class="table-responsive" style="max-height:400px;overflow:auto">
+    <table class="table table-striped" id="all" >
       <thead>
         <tr>
           <th>
@@ -73,39 +72,44 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 foreach ($_from as $_smarty_tpl->tpl_vars['userRequest']->key => $_smarty_tpl->tpl_vars['userRequest']->value) {
 $_smarty_tpl->tpl_vars['userRequest']->_loop = true;
 ?>
-		      <?php if ($_smarty_tpl->tpl_vars['userRequest']->value['finaldate']<=time()) {?>
+		 
+<?php if ($_smarty_tpl->tpl_vars['userRequest']->value['currentstatus']!='closed') {?>
 
         <tr>
-          <td>
+		<td id="idIt" style="display:none" ><?php echo $_smarty_tpl->tpl_vars['userRequest']->value['iditem'];?>
+</td>
+		<td id="idUs" style="display:none"><?php echo $_smarty_tpl->tpl_vars['userRequest']->value['idreader'];?>
+</td>
+          <td id="idrequisition">
             <?php echo $_smarty_tpl->tpl_vars['userRequest']->value['idrequisition'];?>
 
           </td>
-          <td>
+          <td id="name">
             <?php echo $_smarty_tpl->tpl_vars['userRequest']->value['name'];?>
 
           </td>
-		  <td>
+          <td id="comment">
             <?php echo $_smarty_tpl->tpl_vars['userRequest']->value['comment'];?>
 
           </td>
-          <td>
+          <td id="finaldate">
             <?php echo $_smarty_tpl->tpl_vars['userRequest']->value['finaldate'];?>
 
           </td>
-		  <td>
+          <td id="deliverydate">
             <?php echo $_smarty_tpl->tpl_vars['userRequest']->value['deliverydate'];?>
 
           </td>
-          <td>
+          <td id="username">
               <?php echo $_smarty_tpl->tpl_vars['userRequest']->value['username'];?>
 
               </td>
-          <td>
+          <td id="currentstatus">
             <?php echo $_smarty_tpl->tpl_vars['userRequest']->value['currentstatus'];?>
 
           </td>
-		   <td>
-            <button class="btn btn-warning" data-toggle="modal" data-target="#alert">Create Alert </button>
+          <td>
+            <button id="createbtn" class="btn btn-warning" data-toggle="modal" data-target="#alert" ">Create Alert </button>
           </td>
         </tr>
 	<?php }?>
@@ -118,7 +122,7 @@ $_smarty_tpl->tpl_vars['userRequest']->_loop = true;
   <h2 class="sub-header">
     Alerts
   </h2>
-  <div class="table-responsive">
+  <div class="table-responsive" style="max-height:400px;overflow:auto">
     <table class="table table-striped">
       <thead>
         <tr>
@@ -177,10 +181,15 @@ $_smarty_tpl->tpl_vars['alert']->_loop = true;
             </h3>
           </div>
           <form action="../actions/create_alert.php" method="post">
-			<input type="hidden" id="reserveidinput" name="reserveid" value="0">
-			<input type="hidden" id="itemidinput" name="itemid" value="0">
-			<input type="hidden" id="readeridinput" name="readerid" value="<?php echo $_smarty_tpl->tpl_vars['readerid']->value;?>
-">
+			<input type="hidden" id="idreq" name="idreq" value="0">
+			<input type="hidden" id="varname" name="varname" value="0">
+			<input type="hidden" id="varcom" name="varcom" value="0">
+			<input type="hidden" id="vardelivery" name="vardelivery" value="0">
+			<input type="hidden" id="varfin" name="varfin" value="0">
+			<input type="hidden" id="varuser" name="varuser" value="0">
+			<input type="hidden" id="varcurr" name="varcurr" value="0">
+<input type="hidden" id="varIt" name="varIt" value="0">
+<input type="hidden" id="varUs" name="varUs" value="0">
             <div class="row">
               <div class="col-md-12">
                 <br>
@@ -214,4 +223,19 @@ $_smarty_tpl->tpl_vars['alert']->_loop = true;
     </div>
 
 </div>
-<?php }} ?>
+<script>
+/*function fillVars(){
+$("#varIt").val( $("#createbtn").parent('td').parent('tr').find('#idIt').text());
+$("#varUs").val($("#createbtn").parent('td').parent('tr').find('#idUs').text());
+console.log( $("#createbtn").parent('td').parent('tr').find('#idIt').text());
+console.log( $("#createbtn").parent('td').parent('tr').find('#idUs').text());
+};*/
+$('#all').on( 'click', '#createbtn', function( event ) {
+        var $tr = $(this).closest('tr');
+        $("#varIt").val($tr.find('#idIt').text());
+        $("#varUs").val($tr.find( '#idUs').text());
+console.log( $tr.find('#idIt').text());
+        // Submit your form here
+});
+
+</script><?php }} ?>

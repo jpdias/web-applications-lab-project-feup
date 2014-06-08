@@ -4,7 +4,7 @@
     </i>
     Search Items
   </h1>
-  <div class="col-md-8">
+  <div class="col-md-7">
       <div class="input-group">
         <div class="input-group-btn">
           <script src="../javascript/dropdown.js"></script>
@@ -44,14 +44,19 @@
       </div>
     <br>
   </div>
-  <div class="col-md-4">
+  <div class="col-md-4" style="margin-left:5px;float:right;">
+	<button class="btn btn-md btn-success" data-toggle="modal" data-target="#addItemModal">
+      <i class="glyphicon glyphicon-plus">
+      </i>
+      Add Item
+    </button>
     <br>
   </div>
-  <div class="col-md-6">
+  <div class="col-md-6" >
     <h2 class="sub-header">
       Active items
     </h2>
-    <div class="table-responsive">
+    <div class="table-responsive" style="max-height:400px;overflow:auto">
       <table class="table table-striped">
         <thead>
           <tr>
@@ -97,7 +102,7 @@
     <h2 class="sub-header">
       New Items
     </h2>
-    <div class="table-responsive">
+    <div class="table-responsive" style="max-height:400px;overflow:auto">
       <table class="table table-striped">
         <thead>
           <tr>
@@ -139,17 +144,6 @@
       </table>
     </div>
   </div>
-  <br>
-  <br>
-  <br>
-  <br>
-  <h4>
-    <button class="btn btn-lg btn-success" data-toggle="modal" data-target="#addItemModal">
-      <i class="glyphicon glyphicon-plus">
-      </i>
-      Add Item
-    </button>
-  </h4>
 </div>
 
 <div class="modal fade" id="addItemModal" tabindex="-1" role="dialog" aria-labelledby="addItemModalLabel" aria-hidden="true">

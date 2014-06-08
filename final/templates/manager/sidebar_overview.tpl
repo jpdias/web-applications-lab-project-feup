@@ -41,6 +41,11 @@
             Users
           </a>
         </li>
+		<li>
+          <a href="../pages/manager_alerts.php?id={$IDMANAGER}">
+            Alerts
+          </a>
+        </li>
       </ul>
 	  <form class="body-form" role="search" method="get" action="../pages/search_results.php">
         <div class="input-group add-on">

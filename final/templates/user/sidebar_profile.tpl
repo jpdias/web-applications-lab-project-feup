@@ -17,13 +17,18 @@
           </a>
         </li>
         <li>
-          <a href="#">
+          <a  href="../pages/user_statistics.php?id={$IDREADER}">
             Statistics
           </a>
         </li>
         <li class="active">
           <a href="../pages/user_profile.php?id={$IDREADER}">
             My profile
+          </a>
+        </li>
+		<li>
+          <a href="../pages/user_alerts.php?id={$IDREADER}">
+            Alerts
           </a>
         </li>
       </ul>

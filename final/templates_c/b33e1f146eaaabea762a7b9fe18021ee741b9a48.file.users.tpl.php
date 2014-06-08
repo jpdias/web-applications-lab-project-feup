@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.15, created on 2014-06-07 20:19:08
+<?php /* Smarty version Smarty-3.1.15, created on 2014-06-08 16:10:32
          compiled from "/opt/lbaw/lbaw1342/public_html/final/templates/manager/users.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:1012859643539245306148f7-61633639%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'b33e1f146eaaabea762a7b9fe18021ee741b9a48' => 
     array (
       0 => '/opt/lbaw/lbaw1342/public_html/final/templates/manager/users.tpl',
-      1 => 1402168338,
+      1 => 1402240230,
       2 => 'file',
     ),
   ),
@@ -81,7 +81,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     <h2 class="sub-header">
       Active users
     </h2>
-    <div class="table-responsive">
+    <div class="table-responsive" style="max-height:400px;overflow:auto">
       <table class="table table-striped">
         <thead>
           <tr>
@@ -137,7 +137,7 @@ $_smarty_tpl->tpl_vars['activeuser']->_loop = true;
     <h2 class="sub-header">
       New Users
     </h2>
-    <div class="table-responsive">
+    <div class="table-responsive" style="max-height:400px;overflow:auto">
       <table class="table table-striped">
         <thead>
           <tr>

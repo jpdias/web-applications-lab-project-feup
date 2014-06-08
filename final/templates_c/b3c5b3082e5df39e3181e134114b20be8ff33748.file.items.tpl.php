@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.15, created on 2014-06-07 20:00:44
+<?php /* Smarty version Smarty-3.1.15, created on 2014-06-08 16:08:48
          compiled from "/opt/lbaw/lbaw1342/public_html/final/templates/manager/items.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:16938508875392451314d030-26886763%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'b3c5b3082e5df39e3181e134114b20be8ff33748' => 
     array (
       0 => '/opt/lbaw/lbaw1342/public_html/final/templates/manager/items.tpl',
-      1 => 1402167642,
+      1 => 1402240126,
       2 => 'file',
     ),
   ),
@@ -33,7 +33,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     </i>
     Search Items
   </h1>
-  <div class="col-md-8">
+  <div class="col-md-7">
       <div class="input-group">
         <div class="input-group-btn">
           <script src="../javascript/dropdown.js"></script>
@@ -74,14 +74,19 @@ $_valid = $_smarty_tpl->decodeProperties(array (
       </div>
     <br>
   </div>
-  <div class="col-md-4">
+  <div class="col-md-4" style="margin-left:5px;float:right;">
+ <button class="btn btn-md btn-success" data-toggle="modal" data-target="#addItemModal">
+      <i class="glyphicon glyphicon-plus">
+      </i>
+      Add Item
+    </button>
     <br>
   </div>
-  <div class="col-md-6">
+  <div class="col-md-6" >
     <h2 class="sub-header">
       Active items
     </h2>
-    <div class="table-responsive">
+    <div class="table-responsive" style="max-height:400px;overflow:auto">
       <table class="table table-striped">
         <thead>
           <tr>
@@ -136,7 +141,7 @@ $_smarty_tpl->tpl_vars['activeitem']->_loop = true;
     <h2 class="sub-header">
       New Items
     </h2>
-    <div class="table-responsive">
+    <div class="table-responsive" style="max-height:400px;overflow:auto">
       <table class="table table-striped">
         <thead>
           <tr>

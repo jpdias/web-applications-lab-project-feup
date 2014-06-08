@@ -51,7 +51,7 @@
     <h2 class="sub-header">
       Active users
     </h2>
-    <div class="table-responsive">
+    <div class="table-responsive" style="max-height:400px;overflow:auto">
       <table class="table table-striped">
         <thead>
           <tr>
@@ -97,7 +97,7 @@
     <h2 class="sub-header">
       New Users
     </h2>
-    <div class="table-responsive">
+    <div class="table-responsive" style="max-height:400px;overflow:auto">
       <table class="table table-striped">
         <thead>
           <tr>

@@ -7,7 +7,7 @@
 	if(isset($_GET['id']) && $_GET['id'] == $_SESSION['idreader'])
 	{
 	  $smarty->display('common/header.tpl');
-	  $smarty->display('user/sidebar_statistics.tpl');
+	  $smarty->display('user/sidebar_alerts.tpl');
 	  
 	  	try
 		{

@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.15, created on 2014-06-07 18:33:20
+<?php /* Smarty version Smarty-3.1.15, created on 2014-06-08 16:10:37
          compiled from "/opt/lbaw/lbaw1342/public_html/final/templates/manager/dash.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:12945118255392453aab02c1-20892960%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '213bf85633836ce7f1f81693f1369d667f2c489e' => 
     array (
       0 => '/opt/lbaw/lbaw1342/public_html/final/templates/manager/dash.tpl',
-      1 => 1402159635,
+      1 => 1402239719,
       2 => 'file',
     ),
   ),
@@ -62,7 +62,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   <h2 class="sub-header">
     My requests
   </h2>
-  <div class="table-responsive">
+  <div class="table-responsive" style="max-height:50%;overflow:auto">
     <table class="table table-striped">
       <thead>
         <tr>
@@ -134,7 +134,7 @@ $_smarty_tpl->tpl_vars['userRequest']->_loop = true;
   <h2 class="sub-header">
     My reserves
   </h2>
-  <div class="table-responsive">
+  <div class="table-responsive" style="max-height:50%;overflow:auto"> 
     <table class="table table-striped">
       <thead>
         <tr>

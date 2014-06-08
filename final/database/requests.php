@@ -7,7 +7,7 @@ function getAllRequests()
 	try
 	{
 		$stmt = $conn->prepare('
-		select requisition.idRequisition, requisition.comment, requisition.initialdate, requisition.finaldate, requisition.deliverydate, requisition.numberofrenewals, requisition.currentstatus, requisition.idReader, requisition.idItem, item.idItem, item.name, reader.idReader, reader.username
+		select requisition.idRequisition, requisition.comment, requisition.initialdate, requisition.finaldate, requisition.deliverydate, requisition.numberofrenewals, requisition.currentstatus, requisition.idreader, requisition.iditem, item.idItem, item.name, reader.idReader, reader.username
 		from requisition, item, reader
 		where item.idItem=requisition.idItem and requisition.idReader=reader.idReader');
 		$stmt->execute();
@@ -22,6 +22,8 @@ function getAllRequests()
 		echo $e->getMessage();
 	}
 }
+
+
 
 function openRequest($idrequisition, $comment, $initialdate, $finaldate, $idreader, $iditem)
 {

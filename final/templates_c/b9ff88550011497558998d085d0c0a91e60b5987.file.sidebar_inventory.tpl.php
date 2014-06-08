@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.15, created on 2014-06-07 19:06:35
+<?php /* Smarty version Smarty-3.1.15, created on 2014-06-08 16:02:06
          compiled from "/opt/lbaw/lbaw1342/public_html/final/templates/manager/sidebar_inventory.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:160840903453924513058e38-39037584%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'b9ff88550011497558998d085d0c0a91e60b5987' => 
     array (
       0 => '/opt/lbaw/lbaw1342/public_html/final/templates/manager/sidebar_inventory.tpl',
-      1 => 1402164257,
+      1 => 1402234213,
       2 => 'file',
     ),
   ),
@@ -70,6 +70,12 @@ $_valid = $_smarty_tpl->decodeProperties(array (
           <a href="../pages/manager_users.php?id=<?php echo $_smarty_tpl->tpl_vars['IDMANAGER']->value;?>
 ">
             Users
+          </a>
+        </li>
+		<li>
+          <a href="../pages/manager_alerts.php?id=<?php echo $_smarty_tpl->tpl_vars['IDMANAGER']->value;?>
+">
+            Alerts
           </a>
         </li>
       </ul>

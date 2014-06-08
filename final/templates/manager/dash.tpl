@@ -33,7 +33,7 @@
   <h2 class="sub-header">
     My requests
   </h2>
-  <div class="table-responsive">
+  <div class="table-responsive" style="max-height:50%;overflow:auto">
     <table class="table table-striped">
       <thead>
         <tr>
@@ -94,7 +94,7 @@
   <h2 class="sub-header">
     My reserves
   </h2>
-  <div class="table-responsive">
+  <div class="table-responsive" style="max-height:50%;overflow:auto"> 
     <table class="table table-striped">
       <thead>
         <tr>
