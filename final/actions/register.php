@@ -36,16 +36,18 @@ try
 		
 		if($error == 0)
 		{
-			if($username == $result[$i]['username'])
+			$i = 0;
+
+			while($i < count($result))
 			{
-				$error = 2;
+				if($username == $result[$i]['username'])
+				{
+					$error = 2;
+				}
+				
+				++$i;
 			}
-			
-			++$i;
 		}
-
-
-		$idreader = $i + 1;
 
 
 		if($error != 0)
@@ -62,12 +64,20 @@ try
 		}
 		else
 		{
+			$i = count($result);
+			
+		
+
+			$idreader = $i + 1;
+			
+			
+			
 			$explodeEmail = explode('@', $_POST['email']);
 			
 			$username = $explodeEmail[0];
 			
 			
-			registerUser($idreader, $username, $_POST['password'], $_POST['city'], $_POST['birthdate'], $_POST['email'], $_POST['firstname'], $_POST['lastname']);
+			registerUser($idreader, $username, $_POST['password'], $_POST['address'], $_POST['birthdate'], $_POST['email'], $_POST['firstname'], $_POST['lastname']);
 			
 			
 			$_SESSION['success_messages'][] = 'User successfully registered!';

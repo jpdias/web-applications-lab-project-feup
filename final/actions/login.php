@@ -116,7 +116,7 @@ try
 			}
 			
 			
-			header('Location: ../pages/main.php');
+			header('Location: ' . $_SERVER['HTTP_REFERER']);
 		}
 	}
 }
